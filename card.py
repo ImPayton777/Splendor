@@ -14,7 +14,7 @@ class Card(pg.sprite.Sprite):
     redCost = 0
     brownCost = 0
 
-    #creates a crad
+    #creates a card
     def __init__(self, coord):
         super(Card, self).__init__()
 
