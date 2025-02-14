@@ -41,6 +41,7 @@ class Card(pg.sprite.Sprite):
 
     #draws a card
     def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
     #a setter and getter for then point value of a card
     def setPoints(self, points):

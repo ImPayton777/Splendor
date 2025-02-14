@@ -23,6 +23,7 @@ class Token(pg.sprite.Sprite):
 
     #draws a token
     def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
     #sets type of gem
     def setType(self, gem):
