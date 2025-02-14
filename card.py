@@ -23,12 +23,19 @@ class Card(pg.sprite.Sprite):
 
     #a setter and getter for then point value of a card
     def setPoints(self, points):
+        self.points = points
 
     def getPoints(self):
-        return points
+        return self.points
 
     #a setter and getter for the cost of a card
     def setCost(self, white, blue, green, red, brown):
+        self.whiteCost = white
+        self.blueCost = blue
+        self.greenCost = green
+        self.redCost = red
+        self.brownCost = brown
 
     def getCost(self):
+        return [self.whiteCost, self.blueCost, self.greenCost, self.redCost, self.brownCost]
 
