@@ -14,4 +14,4 @@ class Token(pg.sprite.Sprite):
 
     #sets type of gem
     def setType(self, gem):
-        tokenType = gem
+        self.tokenType = gem
