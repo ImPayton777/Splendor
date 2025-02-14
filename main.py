@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-
-import pygame as pg                                                              import pygame.freetype                                                           import os
+import os
+import pygame.freetype                                                          
+import pygame as pg 
 from pygame.locals import *
 
 def main():
@@ -18,4 +19,3 @@ def main():
     # Startup the main game loop
     running = True
     while running:
-
