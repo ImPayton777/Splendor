@@ -7,8 +7,9 @@ class Tokens(pg.sprite.Sprite):
     tokenType = 0
     #creates a token
     def __init__(self, coord, gem):
-        super(Token, self).__init__()
-        if gem == 0:                                                                         self.image = pg.image.load(os.path.join('assets', 'whiteToken.png')).convert_alpha()
+        super(Tokens, self).__init__()
+        if gem == 0:
+            self.image = pg.image.load(os.path.join('assets', 'whiteToken.png')).convert_alpha()
         elif gem == 1:
             self.image = pg.image.load(os.path.join('assets', 'blueToken.png')).convert_alpha()
         elif gem == 2:
