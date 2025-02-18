@@ -61,5 +61,5 @@ class Card(pg.sprite.Sprite):
     def getCost(self):
         return [self.whiteCost, self.blueCost, self.greenCost, self.redCost, self.brownCost]
 
-    def get cardType:
+    def getCardType:
         return tokenType
