@@ -5,6 +5,7 @@ import pygame as pg
 from pygame.locals import *
 from random import choice
 from card import Card
+from token import Token
 
 def main():
     # Startup pygame
@@ -21,6 +22,7 @@ def main():
     lvl1 = pg.sprite.Group()
     lvl2 = pg.sprite.Group()
     lvl3 = pg.sprite.Group()
+    tokens = pg.sprite.Group()
 
     c1 = (50,550)
     c2 = (50,300)
@@ -186,6 +188,10 @@ def main():
     l3c4 = choice(l3)
     l3.remove(l3c4)
     l3c4.update(710)
+
+    #create tokens
+
+
     # Startup the main game loop
     running = True
     while running:
