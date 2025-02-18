@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import os
-import pygame.freetype                                                          
+import pygame.freetype
 import pygame as pg 
 from pygame.locals import *
+from random import choice
 from card import Card
 
 def main():
@@ -10,7 +11,7 @@ def main():
     pg.init()
 
     # Get a screen object
-    screen = pg.display.set_mode([1024, 1268])
+    screen = pg.display.set_mode([1024, 1400])
 
     #get font
     pg.font.init()
@@ -24,10 +25,10 @@ def main():
     c1 = (50,550)
     c2 = (50,300)
     c3 = (50, 50)
-   #coord, white, blue, green, red, brown, points, gem, lvl
-   #0 = white   1 = blue   2 = green   3 - red   4 - black
-   #Level 1 Blacks
-    lvl1.add(Card(c1,1,1,1,1,0,0,4,1))
+    #coord, white, blue, green, red, brown, points, gem, lvl
+    #0 = white   1 = blue   2 = green   3 - red   4 - black
+    #Level 1 Blacks
+    d1 = Card(c1,1,1,1,1,0,0,4,1)
     lvl1.add(Card(c1,1,2,1,1,0,0,4,1))
     lvl1.add(Card(c1,2,2,0,1,0,0,4,1))
     lvl1.add(Card(c1,0,0,1,3,1,0,4,1))
@@ -35,7 +36,7 @@ def main():
     lvl1.add(Card(c1,2,0,2,0,0,0,4,1))
     lvl1.add(Card(c1,0,0,3,0,0,0,4,1))
     lvl1.add(Card(c1,0,4,0,0,0,1,4,1))
-   #Level 1 Blues
+    #Level 1 Blues
     lvl1.add(Card(c1,1,0,1,1,1,0,1,1))
     lvl1.add(Card(c1,1,0,1,2,1,0,1,1))
     lvl1.add(Card(c1,1,0,2,2,0,0,1,1))
@@ -136,11 +137,55 @@ def main():
     lvl3.add(Card(c3,0,3,6,3,0,4,3,3))
     lvl3.add(Card(c3,0,0,7,3,0,5,3,3))
 
+    #l = list lvl
+    l1 = list(lvl1)
+    l2 = list(lvl2)
+    l3 = list(lvl3)
+
     # Get font setup
     pg.freetype.init()
     font_size = 64
     # Make a tuple for FONTCOLOR
     FONTCOLOR = (255,0,0)
+    #pull out random cards 
+    l1c1 = choice(l1)
+    l1.remove(l1c1)
+    l1c1.update(200)
+    l1c2 = choice(l1)
+    l1.remove(l1c2)
+    l1c2.update(370)
+    l1c3 = choice(l1)
+    l1.remove(l1c3)
+    l1c3.update(540)
+    l1c4 = choice(l1)
+    l1.remove(l1c4)
+    l1c4.update(710)
+
+    l2c1 = choice(l2)
+    l2.remove(l2c1)
+    l2c1.update(200)
+    l2c2 = choice(l2)
+    l2.remove(l2c2)
+    l2c2.update(370)
+    l2c3 = choice(l2)
+    l2.remove(l2c3)
+    l2c3.update(540)
+    l2c4 = choice(l2)
+    l2.remove(l2c4)
+    l2c4.update(710)
+
+    l3c1 = choice(l3)
+    l3.remove(l3c1)
+    l3c1.update(200)
+    l3c2 = choice(l3)
+    l3.remove(l3c2)
+    l3c2.update(370)
+    l3c3 = choice(l3)
+    l3.remove(l3c3)
+    l3c3.update(540)
+    l3c4 = choice(l3)
+    l3.remove(l3c4)
+    l3c4.update(710)
     # Startup the main game loop
     running = True
     while running:
@@ -155,10 +200,10 @@ def main():
                 # do something with the clicked sprites...
         screen.fill((0, 0, 0))
         lvl1.draw(screen)
-
         lvl2.draw(screen)
         lvl3.draw(screen)
-        font.render_to(screen, (5, 5), "Desk", FONTCOLOR, None, size=50)
+        font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
+        font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
         pg.display.flip()
 
 # Startup the main method to get things going.
