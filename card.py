@@ -43,6 +43,10 @@ class Card(pg.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
+    #moves a card by delta
+    def update(self, delta):
+        self.rect.x += delta
+
     #a setter and getter for then point value of a card
     def setPoints(self, points):
         self.points = points
