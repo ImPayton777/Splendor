@@ -194,8 +194,23 @@ def main():
     l3.remove(l3c4)
     l3c4.update(710)
 
+    t0 = (0,0)
+    t1 = (0,0)
+    t2 = (0,0)
+    t3 = (0,0)
+    t4 = (0,0)
     #create tokens
-
+    #0 = white   1 = blue   2 = green   3 - red   4 - black
+    for i in range(7):
+        whiteTokens.add(Tokens(t0, 0))
+    for i in range(7):
+        blueTokens.add(Tokens(t1, 1))
+    for i in range(7):
+        greenTokens.add(Tokens(t2, 2))
+    for i in range(7):
+        redTokens.add(Tokens(t3, 3))
+    for i in range(7):
+        brownTokens.add(Tokens(t4, 4))
 
     # Startup the main game loop
     running = True
