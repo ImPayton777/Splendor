@@ -5,7 +5,8 @@ import pygame as pg
 from pygame.locals import *
 from random import choice
 from card import Card
-from token import Token
+from tokens import Tokens
+from player import Player
 
 def main():
     # Startup pygame
@@ -22,7 +23,11 @@ def main():
     lvl1 = pg.sprite.Group()
     lvl2 = pg.sprite.Group()
     lvl3 = pg.sprite.Group()
-    tokens = pg.sprite.Group()
+    whiteTokens = pg.sprite.Group()
+    blueTokens = pg.sprite.Group()
+    greenTokens = pg.sprite.Group()
+    redTokens = pg.sprite.Group()
+    brownTokens = pg.sprite.Group()
 
     c1 = (50,550)
     c2 = (50,300)
