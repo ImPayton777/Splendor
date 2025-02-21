@@ -44,8 +44,9 @@ class Card(pg.sprite.Sprite):
         screen.blit(self.image, self.rect)
 
     #moves a card by delta
-    def update(self, delta):
-        self.rect.x += delta
+    def update(self, deltax, deltay = 0):
+        self.rect.x += deltax
+        self.rect.y += deltay
 
     #a setter and getter for then point value of a card
     def setPoints(self, points):
