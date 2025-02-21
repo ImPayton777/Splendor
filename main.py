@@ -152,9 +152,6 @@ def main():
 
     # Get font setup
     pg.freetype.init()
-    font_size = 64
-    # Make a tuple for FONTCOLOR
-    FONTCOLOR = (255,0,0)
     #pull out random cards 
     l1c1 = choice(l1)
     l1.remove(l1c1)
