@@ -13,12 +13,13 @@ def main():
     pg.init()
 
     # Get a screen object
-    screen = pg.display.set_mode([1024, 1400])
+    screen = pg.display.set_mode([1300, 1400])
 
     #get font
     pg.font.init()
     font = pg.freetype.SysFont(pg.font.get_default_font(), 50)
     FONTCOLOR = (255,255,255)
+    name = "Shop:"
     
     lvl1 = pg.sprite.Group()
     lvl2 = pg.sprite.Group()
@@ -194,11 +195,38 @@ def main():
     l3.remove(l3c4)
     l3c4.update(710)
 
-    t0 = (0,0)
-    t1 = (0,0)
-    t2 = (0,0)
-    t3 = (0,0)
-    t4 = (0,0)
+    #Card costs
+    c11 = l1c1.getCost()
+    c12 = l1c2.getCost()
+    c13 = l1c3.getCost()
+    c14 = l1c4.getCost()
+    c21 = l2c1.getCost()
+    c22 = l2c2.getCost()
+    c23 = l2c3.getCost()
+    c24 = l2c4.getCost()
+    c31 = l3c1.getCost()
+    c32 = l3c2.getCost()
+    c33 = l3c3.getCost()
+    c34 = l3c4.getCost()
+    #Card points
+    p11 = l1c1.getPoints()
+    p12 = l1c2.getPoints()
+    p13 = l1c3.getPoints()
+    p14 = l1c4.getPoints()
+    p21 = l2c1.getPoints()
+    p22 = l2c2.getPoints()
+    p23 = l2c3.getPoints()
+    p24 = l2c4.getPoints()
+    p31 = l3c1.getPoints()
+    p32 = l3c2.getPoints()
+    p33 = l3c3.getPoints()
+    p34 = l3c4.getPoints()
+
+    t0 = (20,850)
+    t1 = (170,850)
+    t2 = (320,850)
+    t3 = (470,850)
+    t4 = (620,850)
     #create tokens
     #0 = white   1 = blue   2 = green   3 - red   4 - black
     for i in range(7):
@@ -212,9 +240,20 @@ def main():
     for i in range(7):
         brownTokens.add(Tokens(t4, 4))
 
+    #create players
+    p1 = Player()
+    p2 = Player()
+
+    #Turn
+    turn = 0
+
     # Startup the main game loop
     running = True
     while running:
+        if(turn == 0):
+            player = p1
+        else:
+            player = p2
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
@@ -224,12 +263,99 @@ def main():
                 # get a list of all sprites that are under the mouse cursor
                 #clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
                 # do something with the clicked sprites...
+
+        #Draw the board
         screen.fill((0, 0, 0))
+        pg.draw.rect(screen, (100,100,100), Rect(940, 790, 300, 560))
+        font.render_to(screen, (950, 800), name, (255,69,0), None, size=50)
         lvl1.draw(screen)
         lvl2.draw(screen)
         lvl3.draw(screen)
+        whiteTokens.draw(screen)
+        blueTokens.draw(screen)
+        greenTokens.draw(screen)
+        redTokens.draw(screen)
+        brownTokens.draw(screen)
         font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
+        font.render_to(screen, (5, 960), "Inventory", FONTCOLOR, None, size=50)
+        font.render_to(screen, (80, 200), "ooo", (255,255,255), None, size=50)
+        font.render_to(screen, (95, 450), "oo", (255,255,255), None, size=50)
+        font.render_to(screen, (110, 700), "o", (255,255,255), None, size=50)
+        font.render_to(screen, (260, 60), str(p31), (0,0,0), None, size=45)
+        font.render_to(screen, (260, 110), "Wh: " + str(c31[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 140), "Bl: " + str(c31[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 170), "Gr: " + str(c31[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 200), "Rd: " + str(c31[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 230), "Br: " + str(c31[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 60), str(p32), (0,0,0), None, size=45)
+        font.render_to(screen, (430, 110), "Wh: " + str(c32[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 140), "Bl: " + str(c32[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 170), "Gr: " + str(c32[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 200), "Rd: " + str(c32[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 230), "Br: " + str(c32[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 60), str(p33), (0,0,0), None, size=45)
+        font.render_to(screen, (600, 110), "Wh: " + str(c33[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 140), "Bl: " + str(c33[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 170), "Gr: " + str(c33[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 200), "Rd: " + str(c33[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 230), "Br: " + str(c33[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 60), str(p34), (0,0,0), None, size=45)
+        font.render_to(screen, (770, 110), "Wh: " + str(c34[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 140), "Bl: " + str(c34[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 170), "Gr: " + str(c34[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 200), "Rd: " + str(c34[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 230), "Br: " + str(c34[4]), (0,0,0), None, size=25)
+
+        font.render_to(screen, (260, 310), str(p21), (0,0,0), None, size=45)
+        font.render_to(screen, (260, 360), "Wh: " + str(c21[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 390), "Bl: " + str(c21[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 420), "Gr: " + str(c21[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 450), "Rd: " + str(c21[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 480), "Br: " + str(c21[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 310), str(p22), (0,0,0), None, size=45)
+        font.render_to(screen, (430, 360), "Wh: " + str(c22[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 390), "Bl: " + str(c22[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 420), "Gr: " + str(c22[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 450), "Rd: " + str(c22[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 480), "Br: " + str(c22[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 310), str(p23), (0,0,0), None, size=45)
+        font.render_to(screen, (600, 360), "Wh: " + str(c23[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 390), "Bl: " + str(c23[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 420), "Gr: " + str(c23[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 450), "Rd: " + str(c23[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 480), "Br: " + str(c23[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 310), str(p24), (0,0,0), None, size=45)
+        font.render_to(screen, (770, 360), "Wh: " + str(c24[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 390), "Bl: " + str(c24[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 420), "Gr: " + str(c24[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 450), "Rd: " + str(c24[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 480), "Br: " + str(c24[4]), (0,0,0), None, size=25)
+
+        font.render_to(screen, (260, 560), str(p11), (0,0,0), None, size=45)
+        font.render_to(screen, (260, 610), "Wh: " + str(c11[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 640), "Bl: " + str(c11[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 670), "Gr: " + str(c11[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 700), "Rd: " + str(c11[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (260, 730), "Br: " + str(c11[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 560), str(p12), (0,0,0), None, size=45)
+        font.render_to(screen, (430, 610), "Wh: " + str(c12[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 640), "Bl: " + str(c12[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 670), "Gr: " + str(c12[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 700), "Rd: " + str(c12[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (430, 730), "Br: " + str(c12[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 560), str(p13), (0,0,0), None, size=45)
+        font.render_to(screen, (600, 610), "Wh: " + str(c13[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 640), "Bl: " + str(c13[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 670), "Gr: " + str(c13[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 700), "Rd: " + str(c13[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (600, 730), "Br: " + str(c13[4]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 560), str(p14), (0,0,0), None, size=45)
+        font.render_to(screen, (770, 610), "Wh: " + str(c14[0]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 640), "Bl: " + str(c14[1]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 670), "Gr: " + str(c14[2]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 700), "Rd: " + str(c14[3]), (0,0,0), None, size=25)
+        font.render_to(screen, (770, 730), "Br: " + str(c14[4]), (0,0,0), None, size=25)
         pg.display.flip()
 
 # Startup the main method to get things going.
