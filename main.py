@@ -150,6 +150,40 @@ def main():
     l2 = list(lvl2)
     l3 = list(lvl3)
 
+    t0 = (20,850)
+    t1 = (170,850)
+    t2 = (320,850)
+    t3 = (470,850)
+    t4 = (620,850)
+    #create tokens
+    #0 = white   1 = blue   2 = green   3 - red   4 - brown
+    for i in range(7):
+        whiteTokens.add(Tokens(t0, 0))
+    for i in range(7):
+        blueTokens.add(Tokens(t1, 1))
+    for i in range(7):
+        greenTokens.add(Tokens(t2, 2))
+    for i in range(7):
+        redTokens.add(Tokens(t3, 3))
+    for i in range(7):
+        brownTokens.add(Tokens(t4, 4))
+
+    #listify token groups and will be piles
+    wT = list(whiteTokens)
+    blT = list(blueTokens)
+    gT = list(greenTokens)
+    rT = list(redTokens)
+    brT = list(brownTokens)
+
+    #Tokens in shop
+    shop = []
+
+    #put all sprites in a list
+    sprites = l1 + l2 + l3 + list(whiteTokens) + list(blueTokens) + list(greenTokens) + list(redTokens) + list(brownTokens)
+
+    #put all sprites in a list
+    sprites = l1 + l2 + l3 + list(whiteTokens) + list(blueTokens) + list(greenTokens) + list(redTokens) + list(brownTokens)
+
     # Get font setup
     pg.freetype.init()
     #pull out random cards 
@@ -219,30 +253,18 @@ def main():
     p33 = l3c3.getPoints()
     p34 = l3c4.getPoints()
 
-    t0 = (20,850)
-    t1 = (170,850)
-    t2 = (320,850)
-    t3 = (470,850)
-    t4 = (620,850)
-    #create tokens
-    #0 = white   1 = blue   2 = green   3 - red   4 - brown
-    for i in range(7):
-        whiteTokens.add(Tokens(t0, 0))
-    for i in range(7):
-        blueTokens.add(Tokens(t1, 1))
-    for i in range(7):
-        greenTokens.add(Tokens(t2, 2))
-    for i in range(7):
-        redTokens.add(Tokens(t3, 3))
-    for i in range(7):
-        brownTokens.add(Tokens(t4, 4))
-
     #create players
     p1 = Player()
     p2 = Player()
 
     #Turn
     turn = 0
+
+    #flags
+    buying = False
+    selectedCard = None
+    endTurn = False
+    invalid = False
 
     # Startup the main game loop
     running = True
@@ -254,17 +276,48 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
-            # handle MOUSEBUTTONUP
+            # handle MOUSEBUTTONUP used from stackoverflow
             if event.type == pg.MOUSEBUTTONUP:
                 pos = pg.mouse.get_pos()
                 # get a list of all sprites that are under the mouse cursor
-                #clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
-                # do something with the clicked sprites...
+                cs = [s for s in sprites if s.rect.collidepoint(pos)]
+                x,y = pos
+                if len(cs) > 0:
+                    # handles getting/returning tokens
+                    #if isinstance(cs[0], Tokens) and not (x < 940 and y > 960):
+                    if (isinstance(cs[0], Card) and len(cs) == 1):
+                        buying = True
+                        selectedCard = cs[0]
+                #YES
+                if 950 <= x <= 1230 and 950 <= y <= 1110 and buying:
+                    canUse = player.getCurrency()
+                    cost = selectedCard.getCost()
+                    if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
+                        player.buyCard(selectedCard)
+                        selectedCard = None
+                        turn = (turn+1)%2
+                        buying = False
+                    else:
+                        invalid = True
+                        buying = False
+
+                #NO
+                if 950 <= x <= 1230 and 1150 <= y <= 1310 and buying:
+                    selectedCard = None
+                    buying = False
 
         #Draw the board
         screen.fill((0, 0, 0))
         pg.draw.rect(screen, (100,100,100), Rect(940, 790, 300, 560))
         font.render_to(screen, (950, 800), name, (255,69,0), None, size=50)
+        if buying:
+            spot = selectedCard.getCords()
+            pg.draw.rect(screen, (255,255,255), Rect(spot[0]-5, spot[1]-5, 160, 220))
+            font.render_to(screen, (950, 875), "Buy Card?", (255,0,0), None, size=50)
+            pg.draw.rect(screen, (0,255,0), Rect(950, 950, 280, 160))
+            pg.draw.rect(screen, (255,0,0), Rect(950, 1150, 280, 160))
+            font.render_to(screen, (1025, 1000), "YES", (0,0,0), None, size=60)
+            font.render_to(screen, (1045, 1200), "NO", (0,0,0), None, size=60)
         lvl1.draw(screen)
         lvl2.draw(screen)
         lvl3.draw(screen)
@@ -273,6 +326,11 @@ def main():
         greenTokens.draw(screen)
         redTokens.draw(screen)
         brownTokens.draw(screen)
+        font.render_to(screen, (920, 5), "Current Player:", FONTCOLOR, None, size=50)
+        if player == p1:
+            font.render_to(screen, (970, 75), "Player 1", FONTCOLOR, None, size=50)
+        else:
+            font.render_to(screen, (970, 75), "Player 2", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 960), "Inventory", FONTCOLOR, None, size=50)
@@ -372,9 +430,9 @@ def drawCardType(screen,font,coords,card):
     if card.getCardType() == 0:
         font.render_to(screen, coords, "White", (255,255,255), None, size=25)
     elif card.getCardType() == 1:
-        font.render_to(screen, coords, "Blue", (0,114,160), None, size=25)
+        font.render_to(screen, coords, "Blue", (2,122,227), None, size=25)
     elif card.getCardType() == 2:
-        font.render_to(screen, coords, "Green", (0,100,0), None, size=25)
+        font.render_to(screen, coords, "Green", (1,54,2), None, size=25)
     elif card.getCardType() == 3:
         font.render_to(screen, coords, "Red", (255,0,0), None, size=25)
     elif card.getCardType() == 4:
