@@ -143,3 +143,7 @@ class Player():
 
     def getTotalPoints(self):
         return self.totalPoints
+
+    #returns card counts of player
+    def getCards(self):
+        return [self.whiteCards, self.blueCards, self.greenCards, self.redCards, self.brownCards]

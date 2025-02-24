@@ -32,3 +32,8 @@ class Tokens(pg.sprite.Sprite):
     #sets type of gem
     def setType(self, gem):
         self.tokenType = gem
+
+    #moves a token
+    def update(self, deltax, deltay = 0):
+        self.rect.x += deltax
+        self.rect.y += deltay

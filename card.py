@@ -43,6 +43,10 @@ class Card(pg.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
+    #returns x,y cords
+    def getCords(self):
+        return [self.rect.x, self.rect.y]
+
     #moves a card by delta
     def update(self, deltax, deltay = 0):
         self.rect.x += deltax
