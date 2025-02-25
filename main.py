@@ -254,6 +254,12 @@ def main():
     p1 = Player()
     p2 = Player()
 
+    #Player card and token trackers
+    p1ti = []
+    p1ci = []
+    p2ti = []
+    p2ci = []
+
     #Turn
     turn = 0
 
@@ -285,8 +291,6 @@ def main():
                     if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying:
                         grabin = True
                         name = "Get tokens:"
-                       # if tcheck(shop):
-                        #    invalid = True
                         tp = cs[0].getType()
                         if x > 940:
                             i = shop.index(cs[0])
@@ -308,9 +312,39 @@ def main():
                         else:
                             if len(shop) > 2:
                                 invalid = True
-                            if len(shop) == 1 and tp == 0 and len(wT) < 3:
-                                if shop[0].getType() == 0:
+                            #Grab 2 of same type with another
+                            if len(shop) == 2 and tp == 0:
+                                if shop[0].getType() == 0 or shop[1].getType() == 0:
                                     invalid = True
+                            if len(shop) == 2 and tp == 1:
+                                if shop[0].getType() == 1 or shop[1].getType() == 1:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 2:
+                                if shop[0].getType() == 2 or shop[1].getType() == 2:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 3:
+                                if shop[0].getType() == 3 or shop[1].getType() == 3:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 4:
+                                if shop[0].getType() == 4 or shop[1].getType() == 4:
+                                    invalid = True
+                            #Grab 3 of same type
+                            if len(shop) == 2 and tp == 0 and len(wT) < 3:
+                                if shop[0].getType() == 0 or shop[1].getType() == 0:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 1 and len(blT) < 3:
+                                if shop[0].getType() == 1 or shop[1].getType() == 1:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 2 and len(gT) < 3:
+                                if shop[0].getType() == 2 or shop[1].getType() == 2:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 3 and len(rT) < 3:
+                                if shop[0].getType() == 3 or shop[1].getType() == 3:
+                                    invalid = True
+                            if len(shop) == 2 and tp == 4 and len(brT) < 3:
+                                if shop[0].getType() == 4 or shop[1].getType() == 4:
+                                    invalid = True
+                            #IF valid grab
                             if not invalid:
                                 if tp == 0:
                                     tT = (wT.pop(0))
@@ -359,7 +393,27 @@ def main():
                     invalid = False
 
                 #YES TOKEN
-                #if 955 <= x <= 1085 and 1260 <= y <= 1330 and grabin:
+                if 955 <= x <= 1085 and 1260 <= y <= 1330 and grabin:
+                    player.takeToken(shop)
+                    while len(shop) != 0:
+                        tp = shop[0].getType()
+                        if tp == 0:
+                            shop[0].move(20,1250)
+                        if tp == 1:
+                            shop[0].move(170,1250)
+                        if tp == 2:
+                            shop[0].move(320,1250)
+                        if tp == 3:
+                            shop[0].move(470,1250)
+                        if tp == 4:
+                            shop[0].move(620,1250)
+                        if player == p1:
+                            p2ti.append(shop.pop(0))
+                        else:
+                            p2ti.append(shop.pop(0))
+                    grabin = False
+                    name = "Shop:"
+                    #Check the player does not have more than ten tokens - TODO 
 
                 #NO TOKEN
                 if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin:
@@ -524,29 +578,6 @@ def drawCardType(screen,font,coords,card):
         font.render_to(screen, coords, "Red", (255,0,0), None, size=25)
     elif card.getCardType() == 4:
         font.render_to(screen, coords, "Brown", (92,64,51), None, size=25)
-
-#check for triple tokens of same color. Return True if found
-"""def tcheck(shop):
-    w = 0
-    bl = 0
-    g = 0
-    r = 0
-    br = 0
-    for t in shop:
-        tp = t.getType()
-        if tp == 0 and w != 2:
-            w += 1
-        elif tp == 1 and bl != 2:
-            bl += 1
-        elif tp == 2 and g != 2:
-            g += 1
-        elif tp == 3 and r != 2:
-            r += 1
-        elif tp == 4 and br != 2:
-            br += 1
-        else:
-            return True
-    return False"""
 
 # Startup the main method to get things going.
 if __name__ == "__main__":
