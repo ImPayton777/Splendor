@@ -284,99 +284,59 @@ def main():
                     # handles getting/returning tokens
                     if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying:
                         grabin = True
-                        if len(shop) > 3:
-                            invalid = True
-                        if tcheck(shop):
-                            invalid = True
-                        w = 0
-                        bl = 0
-                        g = 0
-                        r = 0
-                        br = 0
-                        for t in shop:
-                            if t.getType() == 0:
-                                w += 1
-                            if t.getType() == 1:
-                                bl += 1
-                            if t.getType() == 2:
-                                g += 1
-                            if t.getType() == 3:
-                                r += 1
-                            if t.getType() == 4:
-                                br += 1
+                        name = "Get tokens:"
+                       # if tcheck(shop):
+                        #    invalid = True
                         tp = cs[0].getType()
-                        if tp == 0 and w == 1 and len(wT) != 3:
-                            invalid = True
-                        if tp == 1 and bl == 1 and len(blT) != 3:
-                            invalid = True
-                        if tp == 2 and g == 1 and len(gT) != 3:
-                            invalid = True
-                        if tp == 3 and r == 1 and len(rT) != 3:
-                            invalid = True
-                        if tp == 4 and br == 1 and len(brT) != 3:
-                            invalid = True
                         if x > 940:
+                            i = shop.index(cs[0])
                             if tp == 0:
-                                popped = False
-                                for i in range(len(shop)):
-                                    if shop[i].getType() == 0 and not popped:
-                                        shop[i].move(20,850)
-                                        wT.append(shop.pop(i))
-                                        popped = True
+                                shop[i].move(20,850)
+                                wT.append(shop.pop(i))
                             if tp == 1:
-                                popped = False
-                                for i in range(len(shop)):
-                                    if shop[i].getType() == 1 and not popped:
-                                        shop[i].move(170, 850)
-                                        blT.append(shop.pop(i))
-                                        popped = True
+                                shop[i].move(170,850)
+                                blT.append(shop.pop(i))
                             if tp == 2:
-                                popped = False
-                                for i in range(len(shop)):
-                                    if shop[i].getType() == 2 and not popped:
-                                        shop[i].move(320, 850)
-                                        gT.append(shop.pop(i))
-                                        popped = True
+                                shop[i].move(320,850)
+                                gT.append(shop.pop(i))
                             if tp == 3:
-                                popped = False
-                                for i in range(len(shop)):
-                                    if shop[i].getType() == 3 and not popped:
-                                        shop[i].move(470, 850)
-                                        rT.append(shop.pop(i))
-                                        popped = True
+                                shop[i].move(470,850)
+                                rT.append(shop.pop(i))
                             if tp == 4:
-                                popped = False
-                                for i in range(len(shop)):
-                                    if shop[i].getType() == 4 and not popped:
-                                        shop[i].move(620, 850)
-                                        brT.append(shop.pop(i))
-                                        popped = True
+                                shop[i].move(620,850)
+                                brT.append(shop.pop(i))
                         else:
-                            if tp == 0:
-                                tT = (wT.pop(0))
-                                tT.update(930, len(shop)*114+10)
-                                shop.append(tT)
-                            if tp == 1:
-                                tT = (blT.pop(0))
-                                tT.update(780, len(shop)*114+10)
-                                shop.append(tT)
-                            if tp == 2:
-                                tT = (gT.pop(0))
-                                tT.update(630, len(shop)*114+10)
-                                shop.append(tT)
-                            if tp == 3:
-                                tT = (rT.pop(0))
-                                tT.update(480, len(shop)*114+10)
-                                shop.append(tT)
-                            if tp == 4:
-                                tT = (brT.pop(0))
-                                tT.update(330, len(shop)*114+10)
-                                shop.append(tT)
+                            if len(shop) > 2:
+                                invalid = True
+                            if len(shop) == 1 and tp == 0 and len(wT) < 3:
+                                if shop[0].getType() == 0:
+                                    invalid = True
+                            if not invalid:
+                                if tp == 0:
+                                    tT = (wT.pop(0))
+                                    tT.update(930, len(shop)*114+10)
+                                    shop.append(tT)
+                                if tp == 1:
+                                    tT = (blT.pop(0))
+                                    tT.update(780, len(shop)*114+10)
+                                    shop.append(tT)
+                                if tp == 2:
+                                    tT = (gT.pop(0))
+                                    tT.update(630, len(shop)*114+10)
+                                    shop.append(tT)
+                                if tp == 3:
+                                    tT = (rT.pop(0))
+                                    tT.update(480, len(shop)*114+10)
+                                    shop.append(tT)
+                                if tp == 4:
+                                    tT = (brT.pop(0))
+                                    tT.update(330, len(shop)*114+10)
+                                    shop.append(tT)
                         
                     if isinstance(cs[0], Card) and len(cs) == 1 and not grabin:
                         buying = True
                         selectedCard = cs[0]
-                #YES
+                #YES CARD
                 if 950 <= x <= 1230 and 950 <= y <= 1110 and buying:
                     canUse = player.getCurrency()
                     cost = selectedCard.getCost()
@@ -389,14 +349,39 @@ def main():
                         invalid = True
                         buying = False
 
-                #NO
+                #NO CARD
                 if 950 <= x <= 1230 and 1150 <= y <= 1310 and buying:
                     selectedCard = None
                     buying = False
 
+                #Stop invalid screen
                 if invalid and 350 <= x <= 950 and 350 <= y <= 650:
                     invalid = False
 
+                #YES TOKEN
+                #if 955 <= x <= 1085 and 1260 <= y <= 1330 and grabin:
+
+                #NO TOKEN
+                if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin:
+                    while len(shop) != 0:
+                        tp = shop[0].getType()    
+                        if tp == 0:
+                            shop[0].move(20,850)
+                            wT.append(shop.pop(0))
+                        if tp == 1:
+                            shop[0].move(170,850)
+                            blT.append(shop.pop(0))
+                        if tp == 2:
+                            shop[0].move(320,850)
+                            gT.append(shop.pop(0))
+                        if tp == 3:
+                            shop[0].move(470,850)
+                            rT.append(shop.pop(0))
+                        if tp == 4:
+                            shop[0].move(620,850)
+                            brT.append(shop.pop(0))
+                    grabin = False
+                    name = "Shop:"
 
         #Draw the board
         screen.fill((0, 0, 0))
@@ -541,7 +526,7 @@ def drawCardType(screen,font,coords,card):
         font.render_to(screen, coords, "Brown", (92,64,51), None, size=25)
 
 #check for triple tokens of same color. Return True if found
-def tcheck(shop):
+"""def tcheck(shop):
     w = 0
     bl = 0
     g = 0
@@ -561,7 +546,7 @@ def tcheck(shop):
             br += 1
         else:
             return True
-    return False
+    return False"""
 
 # Startup the main method to get things going.
 if __name__ == "__main__":
