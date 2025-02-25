@@ -400,16 +400,7 @@ def main():
                     player.takeToken(shop)
                     while len(shop) != 0:
                         tp = shop[0].getType()
-                        if tp == 0:
-                            shop[0].move(20,1250)
-                        if tp == 1:
-                            shop[0].move(170,1250)
-                        if tp == 2:
-                            shop[0].move(320,1250)
-                        if tp == 3:
-                            shop[0].move(470,1250)
-                        if tp == 4:
-                            shop[0].move(620,1250)
+                        shop[0].update(500)
                         if player == p1:
                             p2ti.append(shop.pop(0))
                         else:
@@ -417,7 +408,14 @@ def main():
                     grabin = False
                     name = "Shop:"
                     shoppos = [True, True, True]
-                    #Check the player does not have more than ten tokens - TODO 
+                    #Check the player does not have more than ten tokens
+                    pt = player.getCurrency()
+                    cds = player.getCards()
+                    tokenns = pt[0]-cds[0]+pt[1]-cds[1]+pt[2]-cds[2]+pt[3]-cds[3]+pt[4]-cds[4]
+                    if tokenns > 10:
+                        pass
+                    else:
+                        turn = (turn+1)%2
 
                 #NO TOKEN
                 if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin:
@@ -442,6 +440,10 @@ def main():
                     name = "Shop:"
                     shoppos = [True, True, True]
 
+        pt = player.getCurrency()
+        cds = player.getCards()
+        tokenns = [pt[0]-cds[0],pt[1]-cds[1],pt[2]-cds[2],pt[3]-cds[3],pt[4]-cds[4]]
+
         #Draw the board
         screen.fill((0, 0, 0))
         pg.draw.rect(screen, (100,100,100), Rect(940, 790, 300, 560))
@@ -459,6 +461,9 @@ def main():
             pg.draw.rect(screen, (255,0,0), Rect(1095, 1260, 130, 70))
             font.render_to(screen, (965, 1270), "YES", (0,0,0), None, size=50)
             font.render_to(screen, (1115, 1270), "NO", (0,0,0), None, size=50)
+        pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 330))
+        font.render_to(screen, (5, 1115), "Tokens:", (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1170), "White: " + str(tokenns[0]) + "Blue: " + str(tokenns[1]) +"Green: " + str(tokenns[2]) +"Red: " + str(tokenns[3]) +"Brown: " + str(tokenns[4]), (255,69,0), None, size=50)
         lvl1.draw(screen)
         lvl2.draw(screen)
         lvl3.draw(screen)
