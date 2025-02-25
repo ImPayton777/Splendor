@@ -1,5 +1,7 @@
 import os
 import pygame as pg
+from card import Card
+from tokens import Tokens
 
 class Player():
 
@@ -53,19 +55,19 @@ class Player():
         returns = []
         if(cost[0] - self.whiteCards > 0):
             i = cost[0] - self.whiteCards
-            whiteTokens -= i
+            self.whiteTokens -= i
             while i > 0:
                 returns.append(self.whitetokens.pop())
                 i -= 1
         if(cost[1] - self.blueCards):
             i = cost[1] - self.blueCards
-            blueTokens -= i
+            self.blueTokens -= i
             while i > 0:
                 returns.append(self.bluetokens.pop())
                 i -= 1
         if(cost[2] - self.greenCards):
             i = cost[2] - self.greenCards
-            greenTokens -= i
+            self.greenTokens -= i
             while i > 0:
                 returns.append(self.greentokens.pop())
                 i -= 1
@@ -99,7 +101,7 @@ class Player():
     #Give player tokens
     def takeToken(self, tokenns):
         for token in tokenns:
-            i = token.getType
+            i = token.getType()
             if i == 0:
                 self.whiteTokens += 1
                 self.whitetokens.append(token)
@@ -119,7 +121,7 @@ class Player():
     #Player returns tokens
     def returnTokens(self, tokenns):
         for token in tokenns:
-            i = token.getType
+            i = token.getType()
             if i == 0:
                 self.whiteTokens -= 1
                 self.whitetokens.pop(token)
