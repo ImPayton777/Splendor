@@ -263,6 +263,8 @@ def main():
     #Turn
     turn = 0
 
+    shoppos = [True,True,True]
+
     #flags
     buying = False
     selectedCard = None
@@ -309,6 +311,8 @@ def main():
                             if tp == 4:
                                 shop[i].move(620,850)
                                 brT.append(shop.pop(i))
+                            for i in range(len(shop)):
+                                shop[i].move(950, i*114+860)
                         else:
                             if len(shop) > 2:
                                 invalid = True
@@ -366,7 +370,6 @@ def main():
                                     tT = (brT.pop(0))
                                     tT.update(330, len(shop)*114+10)
                                     shop.append(tT)
-                        
                     if isinstance(cs[0], Card) and len(cs) == 1 and not grabin:
                         buying = True
                         selectedCard = cs[0]
@@ -413,6 +416,7 @@ def main():
                             p2ti.append(shop.pop(0))
                     grabin = False
                     name = "Shop:"
+                    shoppos = [True, True, True]
                     #Check the player does not have more than ten tokens - TODO 
 
                 #NO TOKEN
@@ -436,6 +440,7 @@ def main():
                             brT.append(shop.pop(0))
                     grabin = False
                     name = "Shop:"
+                    shoppos = [True, True, True]
 
         #Draw the board
         screen.fill((0, 0, 0))
