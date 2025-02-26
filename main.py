@@ -378,10 +378,27 @@ def main():
                     canUse = player.getCurrency()
                     cost = selectedCard.getCost()
                     if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
-                        player.buyCard(selectedCard)
+                        returns = player.buyCard(selectedCard)
                         selectedCard = None
                         turn = (turn+1)%2
                         buying = False
+                        while len(returns) != 0:
+                            tp = returns[0].getType()
+                            if tp == 0:
+                                returns[0].move(20,850)
+                                wT.append(returns.pop(0))
+                            if tp == 1:
+                                returns[0].move(170,850)
+                                blT.append(returns.pop(0))
+                            if tp == 2:
+                                returns[0].move(320,850)
+                                gT.append(returns.pop(0))
+                            if tp == 3:
+                                returns[0].move(470,850)
+                                rT.append(returns.pop(0))
+                            if tp == 4:
+                                returns[0].move(620,850)
+                                brT.append(returns.pop(0))
                     else:
                         invalid = True
                         buying = False
@@ -461,9 +478,14 @@ def main():
             pg.draw.rect(screen, (255,0,0), Rect(1095, 1260, 130, 70))
             font.render_to(screen, (965, 1270), "YES", (0,0,0), None, size=50)
             font.render_to(screen, (1115, 1270), "NO", (0,0,0), None, size=50)
-        pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 330))
-        font.render_to(screen, (5, 1115), "Tokens:", (255,69,0), None, size=50)
-        font.render_to(screen, (5, 1170), "White: " + str(tokenns[0]) + "Blue: " + str(tokenns[1]) +"Green: " + str(tokenns[2]) +"Red: " + str(tokenns[3]) +"Brown: " + str(tokenns[4]), (255,69,0), None, size=50)
+        pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 430))
+        font.render_to(screen, (5, 1025), "Cards:", (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1070), " White: " + str(cds[0]) + " Blue: " + str(cds[1]) +" Green: " + str(cds[2]), (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1125), " Red: " + str(cds[3]) + " Brown: " + str(cds[4]), (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1175), " Points: " + str(player.getTotalPoints()), (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1225), "Tokens:", (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1270), " White: " + str(tokenns[0]) + " Blue: " + str(tokenns[1]) +" Green: " + str(tokenns[2]), (255,69,0), None, size=50)
+        font.render_to(screen, (5, 1325), " Red: " + str(tokenns[3]) + " Brown: " + str(tokenns[4]), (255,69,0), None, size=50)
         lvl1.draw(screen)
         lvl2.draw(screen)
         lvl3.draw(screen)
@@ -479,7 +501,7 @@ def main():
             font.render_to(screen, (970, 75), "Player 2", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
-        font.render_to(screen, (5, 960), "Inventory", FONTCOLOR, None, size=50)
+        font.render_to(screen, (5, 965), "Inventory", FONTCOLOR, None, size=50)
         font.render_to(screen, (80, 200), "ooo", (255,255,255), None, size=50)
         font.render_to(screen, (95, 450), "oo", (255,255,255), None, size=50)
         font.render_to(screen, (110, 700), "o", (255,255,255), None, size=50)
