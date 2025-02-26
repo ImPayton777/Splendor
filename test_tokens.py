@@ -40,20 +40,16 @@ class testTokens(unittest.TestCase):
     #Tests if update moves the x if only x is given.
     def test_update1(self):
         k = Tokens((0,0),0)
-        x = k.rect.x
-        y = k.rect.y
         k.update(4)
-        self.assertEqual(k.rect.x,x+4)
-        self.assertEqual(k.rect.y,y)
+        self.assertEqual(k.rect.x,4)
+        self.assertEqual(k.rect.y,0)
 
     #Tests if update moves the x and y if both are given.
     def test_update2(self):
         k = Tokens((0,0),0)
-        x = k.rect.x
-        y = k.rect.y
         k.update(5,7)
-        self.assertEqual(k.rect.x,x+5)
-        self.assertEqual(k.rect.y,y+7)
+        self.assertEqual(k.rect.x,5)
+        self.assertEqual(k.rect.y,7)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
