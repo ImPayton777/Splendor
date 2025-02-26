@@ -149,3 +149,7 @@ class Player():
     #returns card counts of player
     def getCards(self):
         return [self.whiteCards, self.blueCards, self.greenCards, self.redCards, self.brownCards]
+
+    #returns token counts of player
+    def getTokens(self):
+        return [self.whiteTokens, self.blueTokens, self.greenTokens, self.redTokens, self.brownTokens]
