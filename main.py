@@ -223,46 +223,18 @@ def main():
     l3.remove(l3c4)
     l3c4.update(710)
 
-    #Card costs
-    c11 = l1c1.getCost()
-    c12 = l1c2.getCost()
-    c13 = l1c3.getCost()
-    c14 = l1c4.getCost()
-    c21 = l2c1.getCost()
-    c22 = l2c2.getCost()
-    c23 = l2c3.getCost()
-    c24 = l2c4.getCost()
-    c31 = l3c1.getCost()
-    c32 = l3c2.getCost()
-    c33 = l3c3.getCost()
-    c34 = l3c4.getCost()
-    #Card points
-    p11 = l1c1.getPoints()
-    p12 = l1c2.getPoints()
-    p13 = l1c3.getPoints()
-    p14 = l1c4.getPoints()
-    p21 = l2c1.getPoints()
-    p22 = l2c2.getPoints()
-    p23 = l2c3.getPoints()
-    p24 = l2c4.getPoints()
-    p31 = l3c1.getPoints()
-    p32 = l3c2.getPoints()
-    p33 = l3c3.getPoints()
-    p34 = l3c4.getPoints()
-
     #create players
     p1 = Player()
     p2 = Player()
 
-    #Player card and token trackers
+    #Player Token inventory
     p1ti = []
-    p1ci = []
     p2ti = []
-    p2ci = []
 
     #Turn
     turn = 0
 
+    #Shop positions of tokens
     shoppos = [True,True,True]
 
     #flags
@@ -379,6 +351,78 @@ def main():
                     cost = selectedCard.getCost()
                     if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                         returns = player.buyCard(selectedCard)
+                        if selectedCard == l1c1:
+                            selectedCard.update(1100)
+                            if len(l1) > 0:
+                                l1c1 = choice(l1)
+                                l1.remove(l1c1)
+                                l1c1.update(200)
+                        if selectedCard == l1c2:
+                            selectedCard.update(1100)
+                            if len(l1) > 0:
+                                l1c2 = choice(l1)
+                                l1.remove(l1c2)
+                                l1c2.update(370)
+                        if selectedCard == l1c3:
+                            selectedCard.update(1100)
+                            if len(l1) > 0:
+                                l1c3 = choice(l1)
+                                l1.remove(l1c3) 
+                                l1c3.update(540)
+                        if selectedCard == l1c4:
+                            selectedCard.update(1100)
+                            if len(l1) > 0:
+                                l1c4 = choice(l1)
+                                l1.remove(l1c4)
+                                l1c4.update(710)
+                        if selectedCard == l2c1:
+                            selectedCard.update(1100)
+                            if len(l2) > 0:
+                                l2c1 = choice(l2)
+                                l2.remove(l2c1)
+                                l2c1.update(200)
+                        if selectedCard == l2c2:
+                            selectedCard.update(1100)
+                            if len(l2) > 0:
+                                l2c2 = choice(l2)
+                                l2.remove(l2c2)
+                                l2c2.update(370)
+                        if selectedCard == l2c3:
+                            selectedCard.update(1100)
+                            if len(l2) > 0:
+                                l2c3 = choice(l2)
+                                l2.remove(l2c3)
+                                l2c3.update(540)
+                        if selectedCard == l2c4:
+                            selectedCard.update(1100)
+                            if len(l2) > 0:
+                                l2c4 = choice(l2)
+                                l2.remove(l2c4)
+                                l2c4.update(710)
+                        if selectedCard == l3c1:
+                            selectedCard.update(1100)
+                            if len(l3) > 0:
+                                l3c1 = choice(l3)
+                                l3.remove(l3c1) 
+                                l3c1.update(200)
+                        if selectedCard == l3c2:
+                            selectedCard.update(1100)
+                            if len(l3) > 0:
+                                l3c2 = choice(l3)
+                                l3.remove(l3c2)
+                                l3c2.update(370)
+                        if selectedCard == l3c3:
+                            selectedCard.update(1100)
+                            if len(l3) > 0:
+                                l3c3 = choice(l3)
+                                l3.remove(l3c3)
+                                l3c3.update(540)
+                        if selectedCard == l3c4:
+                            selectedCard.update(1100)
+                            if len(l3) > 0:
+                                l3c4 = choice(l3)
+                                l3.remove(l3c4)
+                                l3c4.update(710)
                         selectedCard = None
                         turn = (turn+1)%2
                         buying = False
@@ -459,7 +503,34 @@ def main():
 
         pt = player.getCurrency()
         cds = player.getCards()
-        tokenns = [pt[0]-cds[0],pt[1]-cds[1],pt[2]-cds[2],pt[3]-cds[3],pt[4]-cds[4]]
+        tokenns = player.getTokens()
+
+        #Card costs
+        c11 = l1c1.getCost()
+        c12 = l1c2.getCost()
+        c13 = l1c3.getCost()
+        c14 = l1c4.getCost()
+        c21 = l2c1.getCost()
+        c22 = l2c2.getCost()
+        c23 = l2c3.getCost()
+        c24 = l2c4.getCost()
+        c31 = l3c1.getCost()
+        c32 = l3c2.getCost()
+        c33 = l3c3.getCost()
+        c34 = l3c4.getCost()
+        #Card points
+        p11 = l1c1.getPoints()
+        p12 = l1c2.getPoints()
+        p13 = l1c3.getPoints()
+        p14 = l1c4.getPoints()
+        p21 = l2c1.getPoints()
+        p22 = l2c2.getPoints()
+        p23 = l2c3.getPoints()
+        p24 = l2c4.getPoints()
+        p31 = l3c1.getPoints()
+        p32 = l3c2.getPoints()
+        p33 = l3c3.getPoints()
+        p34 = l3c4.getPoints()
 
         #Draw the board
         screen.fill((0, 0, 0))
