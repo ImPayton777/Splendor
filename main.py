@@ -352,77 +352,101 @@ def main():
                     if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                         returns = player.buyCard(selectedCard)
                         if selectedCard == l1c1:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l1) > 0:
                                 l1c1 = choice(l1)
                                 l1.remove(l1c1)
                                 l1c1.update(200)
+                            else: 
+                                l1c1 = None
                         if selectedCard == l1c2:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l1) > 0:
                                 l1c2 = choice(l1)
                                 l1.remove(l1c2)
                                 l1c2.update(370)
+                            else:
+                                l1c2 = None
                         if selectedCard == l1c3:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l1) > 0:
                                 l1c3 = choice(l1)
                                 l1.remove(l1c3) 
                                 l1c3.update(540)
+                            else:
+                                l1c3 = None
                         if selectedCard == l1c4:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l1) > 0:
                                 l1c4 = choice(l1)
                                 l1.remove(l1c4)
                                 l1c4.update(710)
+                            else:
+                                l1c4 = None
                         if selectedCard == l2c1:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l2) > 0:
                                 l2c1 = choice(l2)
                                 l2.remove(l2c1)
                                 l2c1.update(200)
+                            else:
+                                l2c1 = None
                         if selectedCard == l2c2:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l2) > 0:
                                 l2c2 = choice(l2)
                                 l2.remove(l2c2)
                                 l2c2.update(370)
+                            else:
+                                l2c2 = None
                         if selectedCard == l2c3:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l2) > 0:
                                 l2c3 = choice(l2)
                                 l2.remove(l2c3)
                                 l2c3.update(540)
+                            else:
+                                l2c3 = None
                         if selectedCard == l2c4:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l2) > 0:
                                 l2c4 = choice(l2)
                                 l2.remove(l2c4)
                                 l2c4.update(710)
+                            else:
+                                l2c4 = None
                         if selectedCard == l3c1:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l3) > 0:
                                 l3c1 = choice(l3)
                                 l3.remove(l3c1) 
                                 l3c1.update(200)
+                            else:
+                                l3c1 = None
                         if selectedCard == l3c2:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l3) > 0:
                                 l3c2 = choice(l3)
                                 l3.remove(l3c2)
                                 l3c2.update(370)
+                            else:
+                                l3c2 = None
                         if selectedCard == l3c3:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l3) > 0:
                                 l3c3 = choice(l3)
                                 l3.remove(l3c3)
                                 l3c3.update(540)
+                            else:
+                                l3c3 = None
                         if selectedCard == l3c4:
-                            selectedCard.update(1100)
+                            selectedCard.update(1400)
                             if len(l3) > 0:
                                 l3c4 = choice(l3)
                                 l3.remove(l3c4)
                                 l3c4.update(710)
+                            else:
+                                l3c4 = None
                         selectedCard = None
                         turn = (turn+1)%2
                         buying = False
@@ -461,7 +485,7 @@ def main():
                     player.takeToken(shop)
                     while len(shop) != 0:
                         tp = shop[0].getType()
-                        shop[0].update(500)
+                        shop[0].update(1500)
                         if player == p1:
                             p2ti.append(shop.pop(0))
                         else:
@@ -506,31 +530,59 @@ def main():
         tokenns = player.getTokens()
 
         #Card costs
-        c11 = l1c1.getCost()
-        c12 = l1c2.getCost()
-        c13 = l1c3.getCost()
-        c14 = l1c4.getCost()
-        c21 = l2c1.getCost()
-        c22 = l2c2.getCost()
-        c23 = l2c3.getCost()
-        c24 = l2c4.getCost()
-        c31 = l3c1.getCost()
-        c32 = l3c2.getCost()
-        c33 = l3c3.getCost()
-        c34 = l3c4.getCost()
+        if l1c1 != None:
+            c11 = l1c1.getCost()
+        if l1c2 != None:
+            c12 = l1c2.getCost()
+        if l1c3 != None:
+            c13 = l1c3.getCost()
+        if l1c4 != None:
+            c14 = l1c4.getCost()
+        if l2c1 != None:
+            c21 = l2c1.getCost()
+        if l2c2 != None:
+            c22 = l2c2.getCost()
+        if l2c3 != None:
+            c23 = l2c3.getCost()
+        if l2c4 != None:
+            c24 = l2c4.getCost()
+        if l3c1 != None:
+            c31 = l3c1.getCost()
+        if l3c2 != None:
+            c32 = l3c2.getCost()
+        if l3c3 != None:
+            c33 = l3c3.getCost()
+        if l3c4 != None:
+            c34 = l3c4.getCost()
+
         #Card points
-        p11 = l1c1.getPoints()
-        p12 = l1c2.getPoints()
-        p13 = l1c3.getPoints()
-        p14 = l1c4.getPoints()
-        p21 = l2c1.getPoints()
-        p22 = l2c2.getPoints()
-        p23 = l2c3.getPoints()
-        p24 = l2c4.getPoints()
-        p31 = l3c1.getPoints()
-        p32 = l3c2.getPoints()
-        p33 = l3c3.getPoints()
-        p34 = l3c4.getPoints()
+        if l1c1 != None:
+            p11 = l1c1.getPoints()
+        if l1c2 != None:
+            p12 = l1c2.getPoints()
+        if l1c3 != None:
+            p13 = l1c3.getPoints()
+        if l1c4 != None:
+            p14 = l1c4.getPoints()
+        if l2c1 != None:
+            p21 = l2c1.getPoints()
+        if l2c2 != None:
+            p22 = l2c2.getPoints()
+        if l2c3 != None:
+            p23 = l2c3.getPoints()
+        if l2c4 != None:
+            p24 = l2c4.getPoints()
+        if l3c1 != None:
+            p31 = l3c1.getPoints()
+        if l3c2 != None:
+            p32 = l3c2.getPoints()
+        if l3c3 != None:
+            p33 = l3c3.getPoints()
+        if l3c4 != None:
+            p34 = l3c4.getPoints()
+
+        if player.getTotalPoints() > 14:
+            running = False
 
         #Draw the board
         screen.fill((0, 0, 0))
@@ -573,95 +625,110 @@ def main():
         font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
         font.render_to(screen, (5, 965), "Inventory", FONTCOLOR, None, size=50)
-        font.render_to(screen, (80, 200), "ooo", (255,255,255), None, size=50)
-        font.render_to(screen, (95, 450), "oo", (255,255,255), None, size=50)
-        font.render_to(screen, (110, 700), "o", (255,255,255), None, size=50)
-        font.render_to(screen, (260, 60), str(p31), (0,0,0), None, size=45)
-        drawCardType(screen, font,(325, 65),l3c1)
-        font.render_to(screen, (260, 110), "Wh: " + str(c31[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 140), "Bl: " + str(c31[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 170), "Gr: " + str(c31[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 200), "Rd: " + str(c31[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 230), "Br: " + str(c31[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 60), str(p32), (0,0,0), None, size=45)
-        drawCardType(screen, font,(490, 65),l3c2)
-        font.render_to(screen, (430, 110), "Wh: " + str(c32[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 140), "Bl: " + str(c32[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 170), "Gr: " + str(c32[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 200), "Rd: " + str(c32[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 230), "Br: " + str(c32[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 60), str(p33), (0,0,0), None, size=45)
-        drawCardType(screen, font,(660, 65),l3c3)
-        font.render_to(screen, (600, 110), "Wh: " + str(c33[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 140), "Bl: " + str(c33[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 170), "Gr: " + str(c33[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 200), "Rd: " + str(c33[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 230), "Br: " + str(c33[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 60), str(p34), (0,0,0), None, size=45)
-        drawCardType(screen, font,(830, 65),l3c4)
-        font.render_to(screen, (770, 110), "Wh: " + str(c34[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 140), "Bl: " + str(c34[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 170), "Gr: " + str(c34[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 200), "Rd: " + str(c34[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 230), "Br: " + str(c34[4]), (0,0,0), None, size=25)
+        if len(l3) > 0:
+            font.render_to(screen, (80, 200), "ooo", (255,255,255), None, size=50)
+        if len(l2) > 0:
+            font.render_to(screen, (95, 450), "oo", (255,255,255), None, size=50)
+        if len(l1) > 0:
+            font.render_to(screen, (110, 700), "o", (255,255,255), None, size=50)
+        if l3c1 != None:
+            font.render_to(screen, (260, 60), str(p31), (0,0,0), None, size=45)
+            drawCardType(screen, font,(325, 65),l3c1)
+            font.render_to(screen, (260, 110), "Wh: " + str(c31[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 140), "Bl: " + str(c31[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 170), "Gr: " + str(c31[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 200), "Rd: " + str(c31[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 230), "Br: " + str(c31[4]), (0,0,0), None, size=25)
+        if l3c2 != None:
+            font.render_to(screen, (430, 60), str(p32), (0,0,0), None, size=45)
+            drawCardType(screen, font,(490, 65),l3c2)
+            font.render_to(screen, (430, 110), "Wh: " + str(c32[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 140), "Bl: " + str(c32[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 170), "Gr: " + str(c32[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 200), "Rd: " + str(c32[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 230), "Br: " + str(c32[4]), (0,0,0), None, size=25)
+        if l3c3 != None:
+            font.render_to(screen, (600, 60), str(p33), (0,0,0), None, size=45)
+            drawCardType(screen, font,(660, 65),l3c3)
+            font.render_to(screen, (600, 110), "Wh: " + str(c33[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 140), "Bl: " + str(c33[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 170), "Gr: " + str(c33[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 200), "Rd: " + str(c33[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 230), "Br: " + str(c33[4]), (0,0,0), None, size=25)
+        if l3c4 != None:
+            font.render_to(screen, (770, 60), str(p34), (0,0,0), None, size=45)
+            drawCardType(screen, font,(830, 65),l3c4)
+            font.render_to(screen, (770, 110), "Wh: " + str(c34[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 140), "Bl: " + str(c34[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 170), "Gr: " + str(c34[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 200), "Rd: " + str(c34[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 230), "Br: " + str(c34[4]), (0,0,0), None, size=25)
 
-        font.render_to(screen, (260, 310), str(p21), (0,0,0), None, size=45)
-        drawCardType(screen, font,(325, 315),l2c1)
-        font.render_to(screen, (260, 360), "Wh: " + str(c21[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 390), "Bl: " + str(c21[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 420), "Gr: " + str(c21[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 450), "Rd: " + str(c21[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 480), "Br: " + str(c21[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 310), str(p22), (0,0,0), None, size=45)
-        drawCardType(screen, font,(490, 315),l2c2)
-        font.render_to(screen, (430, 360), "Wh: " + str(c22[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 390), "Bl: " + str(c22[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 420), "Gr: " + str(c22[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 450), "Rd: " + str(c22[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 480), "Br: " + str(c22[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 310), str(p23), (0,0,0), None, size=45)
-        drawCardType(screen, font,(660, 315),l2c3)
-        font.render_to(screen, (600, 360), "Wh: " + str(c23[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 390), "Bl: " + str(c23[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 420), "Gr: " + str(c23[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 450), "Rd: " + str(c23[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 480), "Br: " + str(c23[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 310), str(p24), (0,0,0), None, size=45)
-        drawCardType(screen, font,(830, 315),l2c4)
-        font.render_to(screen, (770, 360), "Wh: " + str(c24[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 390), "Bl: " + str(c24[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 420), "Gr: " + str(c24[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 450), "Rd: " + str(c24[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 480), "Br: " + str(c24[4]), (0,0,0), None, size=25)
+        if l2c1 != None:
+            font.render_to(screen, (260, 310), str(p21), (0,0,0), None, size=45)
+            drawCardType(screen, font,(325, 315),l2c1)
+            font.render_to(screen, (260, 360), "Wh: " + str(c21[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 390), "Bl: " + str(c21[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 420), "Gr: " + str(c21[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 450), "Rd: " + str(c21[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 480), "Br: " + str(c21[4]), (0,0,0), None, size=25)
+        if l2c2 != None:
+            font.render_to(screen, (430, 310), str(p22), (0,0,0), None, size=45)
+            drawCardType(screen, font,(490, 315),l2c2)
+            font.render_to(screen, (430, 360), "Wh: " + str(c22[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 390), "Bl: " + str(c22[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 420), "Gr: " + str(c22[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 450), "Rd: " + str(c22[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 480), "Br: " + str(c22[4]), (0,0,0), None, size=25)
+        if l2c3 != None:
+            font.render_to(screen, (600, 310), str(p23), (0,0,0), None, size=45)
+            drawCardType(screen, font,(660, 315),l2c3)
+            font.render_to(screen, (600, 360), "Wh: " + str(c23[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 390), "Bl: " + str(c23[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 420), "Gr: " + str(c23[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 450), "Rd: " + str(c23[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 480), "Br: " + str(c23[4]), (0,0,0), None, size=25)
+        if l2c4 != None:
+            font.render_to(screen, (770, 310), str(p24), (0,0,0), None, size=45)
+            drawCardType(screen, font,(830, 315),l2c4)
+            font.render_to(screen, (770, 360), "Wh: " + str(c24[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 390), "Bl: " + str(c24[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 420), "Gr: " + str(c24[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 450), "Rd: " + str(c24[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 480), "Br: " + str(c24[4]), (0,0,0), None, size=25)
 
-        font.render_to(screen, (260, 560), str(p11), (0,0,0), None, size=45)
-        drawCardType(screen, font,(325, 565),l1c1)
-        font.render_to(screen, (260, 610), "Wh: " + str(c11[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 640), "Bl: " + str(c11[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 670), "Gr: " + str(c11[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 700), "Rd: " + str(c11[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (260, 730), "Br: " + str(c11[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 560), str(p12), (0,0,0), None, size=45)
-        drawCardType(screen, font,(490, 565),l1c2)
-        font.render_to(screen, (430, 610), "Wh: " + str(c12[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 640), "Bl: " + str(c12[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 670), "Gr: " + str(c12[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 700), "Rd: " + str(c12[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (430, 730), "Br: " + str(c12[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 560), str(p13), (0,0,0), None, size=45)
-        drawCardType(screen, font,(660, 565),l1c3)
-        font.render_to(screen, (600, 610), "Wh: " + str(c13[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 640), "Bl: " + str(c13[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 670), "Gr: " + str(c13[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 700), "Rd: " + str(c13[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (600, 730), "Br: " + str(c13[4]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 560), str(p14), (0,0,0), None, size=45)
-        drawCardType(screen, font,(830, 565),l1c4)
-        font.render_to(screen, (770, 610), "Wh: " + str(c14[0]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 640), "Bl: " + str(c14[1]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 670), "Gr: " + str(c14[2]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 700), "Rd: " + str(c14[3]), (0,0,0), None, size=25)
-        font.render_to(screen, (770, 730), "Br: " + str(c14[4]), (0,0,0), None, size=25)
+        if l1c1 != None:
+            font.render_to(screen, (260, 560), str(p11), (0,0,0), None, size=45)
+            drawCardType(screen, font,(325, 565),l1c1)
+            font.render_to(screen, (260, 610), "Wh: " + str(c11[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 640), "Bl: " + str(c11[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 670), "Gr: " + str(c11[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 700), "Rd: " + str(c11[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (260, 730), "Br: " + str(c11[4]), (0,0,0), None, size=25)
+        if l1c2 != None:
+            font.render_to(screen, (430, 560), str(p12), (0,0,0), None, size=45)
+            drawCardType(screen, font,(490, 565),l1c2)
+            font.render_to(screen, (430, 610), "Wh: " + str(c12[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 640), "Bl: " + str(c12[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 670), "Gr: " + str(c12[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 700), "Rd: " + str(c12[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (430, 730), "Br: " + str(c12[4]), (0,0,0), None, size=25)
+        if l1c3 != None:
+            font.render_to(screen, (600, 560), str(p13), (0,0,0), None, size=45)
+            drawCardType(screen, font,(660, 565),l1c3)
+            font.render_to(screen, (600, 610), "Wh: " + str(c13[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 640), "Bl: " + str(c13[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 670), "Gr: " + str(c13[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 700), "Rd: " + str(c13[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (600, 730), "Br: " + str(c13[4]), (0,0,0), None, size=25)
+        if l1c4 != None:
+            font.render_to(screen, (770, 560), str(p14), (0,0,0), None, size=45)
+            drawCardType(screen, font,(830, 565),l1c4)
+            font.render_to(screen, (770, 610), "Wh: " + str(c14[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 640), "Bl: " + str(c14[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 670), "Gr: " + str(c14[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 700), "Rd: " + str(c14[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (770, 730), "Br: " + str(c14[4]), (0,0,0), None, size=25)
         if invalid:
             pg.draw.rect(screen, (255,255,255), Rect(10, 10, 1280, 1380))
             font.render_to(screen, (375, 150), "!!!INVALID MOVE!!!", (255,0,0), None, size=60)
