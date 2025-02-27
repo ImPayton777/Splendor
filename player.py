@@ -124,19 +124,19 @@ class Player():
             i = token.getType()
             if i == 0:
                 self.whiteTokens -= 1
-                self.whitetokens.pop(token)
+                self.whitetokens.pop()
             if i == 1:
                 self.blueTokens -= 1
-                self.bluetokens.pop(token)
+                self.bluetokens.pop()
             if i == 2:
                 self.greenTokens -= 1
-                self.greentokens.pop(token)
+                self.greentokens.pop()
             if i == 3:
                 self.redTokens -= 1
-                self.redtokens.pop(token)
+                self.redtokens.pop()
             if i == 4:
                 self.brownTokens -= 1
-                self.browntokens.pop(token)
+                self.browntokens.pop()
 
 
     #returns currency in a list [white, blue, green, red, brown]
