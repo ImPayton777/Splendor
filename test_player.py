@@ -57,7 +57,7 @@ class testPlayer(unittest.TestCase):
         self.assertEqual(p.redtokens,[])
         self.assertEqual(p.browntokens[0],shop[2])
 
-    #Tests to see if player buys card properly with only tokens
+    #Tests to see if player buys card properly with only tokens.
     #0 = white   1 = blue   2 = green   3 - red   4 - brown
     def test_buyCard1(self):
         p = Player()
@@ -102,8 +102,8 @@ class testPlayer(unittest.TestCase):
         t = [Tokens((0,0),0),Tokens((0,0),1),Tokens((0,0),1),Tokens((0,0),2),Tokens((0,0),4)]
         p.takeToken(t)
         self.assertEqual(p.getTokens(),[1,2,1,0,1])
-        p.cards.append(Card)
 
+    #Tests to see if returnTokens properly removes tokens from the player's inventory.
     def test_returnTokens(self):
         p = Player()
         t = [Tokens((0,0),0),Tokens((0,0),1),Tokens((0,0),1),Tokens((0,0),2),Tokens((0,0),3)]
@@ -115,8 +115,6 @@ class testPlayer(unittest.TestCase):
         self.assertEqual(p.greentokens,[])
         self.assertEqual(p.redtokens,[])
         self.assertEqual(p.browntokens,[])
-
-
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
