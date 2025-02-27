@@ -59,25 +59,25 @@ class Player():
             while i > 0:
                 returns.append(self.whitetokens.pop())
                 i -= 1
-        if(cost[1] - self.blueCards):
+        if(cost[1] - self.blueCards > 0):
             i = cost[1] - self.blueCards
             self.blueTokens -= i
             while i > 0:
                 returns.append(self.bluetokens.pop())
                 i -= 1
-        if(cost[2] - self.greenCards):
+        if(cost[2] - self.greenCards > 0):
             i = cost[2] - self.greenCards
             self.greenTokens -= i
             while i > 0:
                 returns.append(self.greentokens.pop())
                 i -= 1
-        if(cost[3] - self.redCards):
+        if(cost[3] - self.redCards > 0):
             i = cost[3] - self.redCards
             self.redTokens -= i
             while i > 0:
                 returns.append(self.redtokens.pop())
                 i -= 1
-        if(cost[4] - self.brownCards):
+        if(cost[4] - self.brownCards > 0):
             i = cost[4] - self.brownCards
             self.brownTokens -= i
             while i > 0:
