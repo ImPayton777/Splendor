@@ -241,6 +241,7 @@ def main():
     buying = False
     selectedCard = None
     grabin = False
+    overStock = False
     endTurn = False
     invalid = False
 
@@ -482,6 +483,12 @@ def main():
 
                 #YES TOKEN
                 if 955 <= x <= 1085 and 1260 <= y <= 1330 and grabin:
+                    chips = player.getTokens()
+                    inv = chips[0]+chips[1]+chips[2]+chips[3]+chips[4]
+                    #if len(shop)+inv > 10:
+                    #    overStock = True
+                    #    invalid = True
+                    #else:
                     player.takeToken(shop)
                     while len(shop) != 0:
                         tp = shop[0].getType()
@@ -494,12 +501,7 @@ def main():
                     name = "Shop:"
                     shoppos = [True, True, True]
                     #Check the player does not have more than ten tokens
-                    pt = player.getCurrency()
-                    cds = player.getCards()
-                    tokenns = pt[0]-cds[0]+pt[1]-cds[1]+pt[2]-cds[2]+pt[3]-cds[3]+pt[4]-cds[4]
-                    if tokenns > 10:
-                        pass
-                    else:
+                    if not overStock:
                         turn = (turn+1)%2
 
                 #NO TOKEN
@@ -522,6 +524,7 @@ def main():
                             shop[0].move(620,850)
                             brT.append(shop.pop(0))
                     grabin = False
+                    #overStock = False
                     name = "Shop:"
                     shoppos = [True, True, True]
 
