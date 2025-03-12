@@ -1,0 +1,83 @@
+@startuml
+class main{
+main()
+}
+class Tokens{
+tokenType: int
+__init__(coord, gem: int)
+draw(screen)
+setType(gem: int)
+getType()
+update(deltax: int, deltay = 0: int)
+move(x: int, y: int)
+}
+class Card{
+tokenType: int
+points: int
+level: int
+whiteCost: int
+blueCost: int
+greenCost: int
+redCost: int
+brownCost: int
+__init__(coord, white: int, blue: int, green: int, red: int, brown: int, points: int, gem: int, lvl: int)
+draw(screen)
+getCords()
+update(deltax: int, deltay = 0: int)
+setPoints(points: int)
+getPoints()
+setCost(white: int, blue: int, green: int, red: int, brown: int)
+getCost()
+getCardType()
+}
+class Player{
+totalPoints: int
+whitetokens: Tokens[]
+bluetokens: Tokens[]
+greentokens: Tokens[] 
+redtokens: Tokens[] 
+browntokens: Tokens[] 
+cards: Card[] 
+whiteCards: int
+whiteTokens: int
+blueCards: int
+blueTokens: int
+greenCards: int
+greenTokens: int
+redCards: int
+redTokens: int
+brownCards: int
+brownTokens: int
+buyCard(card: Card)
+takeToken(tokenns: Tokens[])
+returnTokens(tokenns: Tokens[])
+getCurrency()
+getTotalPoints()
+getCards()
+getTokens()
+}
+class Sprite
+class Noble{
+draw(screen)
+}
+
+Card --|> Sprite
+Tokens --|> Sprite
+Noble --|> Sprite
+
+Player --> Card
+Player ..> Card
+Player ---> Tokens
+Player ...> Tokens
+Player --> Noble
+Player ..> Noble
+
+main --> Player
+main ..> Player
+main --> Card
+main ..> Card
+main --> Tokens
+main ..> Tokens
+main --> Noble
+main ..> Noble
+@enduml
