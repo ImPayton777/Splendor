@@ -1,7 +1,7 @@
 import os
 import pygame as pg
 
-class Noble():
+class Noble(pg.sprite.Sprite):
     def __init__(self, coord, white, blue, green, red, brown, points):
         self.whiteCost = white
         self.blueCost = blue
