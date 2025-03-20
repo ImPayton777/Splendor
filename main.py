@@ -7,6 +7,7 @@ from random import choice
 from card import Card
 from tokens import Tokens
 from player import Player
+from noble import Noble
 
 class Main():
     def main(self):
@@ -30,6 +31,7 @@ class Main():
         greenTokens = pg.sprite.Group()
         redTokens = pg.sprite.Group()
         brownTokens = pg.sprite.Group()
+        nobles = pg.sprite.Group()
 
         c1 = (50,550)
         c2 = (50,300)
@@ -169,6 +171,20 @@ class Main():
         for i in range(4):
             brownTokens.add(Tokens(t4, 4))
 
+        #Creates Nobles
+        #0 = white   1 = blue   2 = green   3 - red   4 - brown
+        """
+        nobles.add(c,0,0,4,4,0,3)
+        nobles.add(c,3,0,0,3,3,3)
+        nobles.add(c,4,4,0,0,0,3)
+        nobles.add(c,4,0,0,0,4,3)
+        nobles.add(c,0,4,4,0,0,3)
+        nobles.add(c,0,3,3,3,0,3)
+        nobles.add(c,3,3,3,0,0,3)
+        nobles.add(c,0,0,0,4,4,3)
+        nobles.add(c,3,3,0,0,3,3)
+        nobles.add(c,0,0,3,3,3,3)
+        """
         #listify token groups and will be piles
         wT = list(whiteTokens)
         blT = list(blueTokens)
