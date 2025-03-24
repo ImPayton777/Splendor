@@ -48,9 +48,9 @@ class Card(pg.sprite.Sprite):
         #save current coords and change image and hitbox
         x = self.rect.x
         y = self.rect.y
-        if lvl == 1:
+        if self.level == 1:
             self.image = pg.image.load(os.path.join('assets', 'lvl1Card.png')).convert_alpha()
-        elif lvl == 2:
+        elif self.level == 2:
             self.image = pg.image.load(os.path.join('assets', 'lvl2Card.png')).convert_alpha()
         else:
             self.image = pg.image.load(os.path.join('assets', 'lvl3Card.png')).convert_alpha()
