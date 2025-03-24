@@ -26,11 +26,11 @@ class Card(pg.sprite.Sprite):
         self.brownCost = brown
         self.points = points
         if lvl == 1:
-            self.image = pg.image.load(os.path.join('assets', 'lvl1Card.png')).convert_alpha()
+            self.image = pg.image.load(os.path.join('assets', 'lvl1CardBack.png')).convert_alpha()
         elif lvl == 2:
-            self.image = pg.image.load(os.path.join('assets', 'lvl2Card.png')).convert_alpha()
+            self.image = pg.image.load(os.path.join('assets', 'lvl2CardBack.png')).convert_alpha()
         elif lvl == 3:
-            self.image = pg.image.load(os.path.join('assets', 'lvl3Card.png')).convert_alpha()
+            self.image = pg.image.load(os.path.join('assets', 'lvl3CardBack.png')).convert_alpha()
         else:
             raise ValueError("Not a card level")
         self.tokenType = gem
@@ -49,11 +49,11 @@ class Card(pg.sprite.Sprite):
         x = self.rect.x
         y = self.rect.y
         if lvl == 1:
-            self.image = pg.image.load(os.path.join('assets', 'lvl1CardBack.png')).convert_alpha()
+            self.image = pg.image.load(os.path.join('assets', 'lvl1Card.png')).convert_alpha()
         elif lvl == 2:
-            self.image = pg.image.load(os.path.join('assets', 'lvl2CardBack.png')).convert_alpha()
+            self.image = pg.image.load(os.path.join('assets', 'lvl2Card.png')).convert_alpha()
         else:
-            self.image = pg.image.load(os.path.join('assets', 'lvl3CardBack.png')).convert_alpha()
+            self.image = pg.image.load(os.path.join('assets', 'lvl3Card.png')).convert_alpha()
         self.rect = self.image.get_rect()
         #Reset coords and move(flip card)
         self.rect.x = x
