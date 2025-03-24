@@ -43,19 +43,30 @@ class Card(pg.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
-    #returns x,y cords
-    def getCords(self):
-        return [self.rect.x, self.rect.y]
+    #For removing a card from the deck
+    def flip(self, deltax, deltay = 0):
+        #save current coords and change image and hitbox
+        x = self.rect.x
+        y = self.rect.y
+        if lvl == 1:
+            self.image = pg.image.load(os.path.join('assets', 'lvl1CardBack.png')).convert_alpha()
+        elif lvl == 2:
+            self.image = pg.image.load(os.path.join('assets', 'lvl2CardBack.png')).convert_alpha()
+        else:
+            self.image = pg.image.load(os.path.join('assets', 'lvl3CardBack.png')).convert_alpha()
+        self.rect = self.image.get_rect()
+        #Reset coords and move(flip card)
+        self.rect.x = x
+        self.rect.y = y
+        self.rect.x += deltax
+        self.rect.y += deltay
 
     #moves a card by delta
     def update(self, deltax, deltay = 0):
         self.rect.x += deltax
         self.rect.y += deltay
 
-    #a setter and getter for then point value of a card
-    def setPoints(self, points):
-        self.points = points
-
+    #a getter for then point value of a card
     def getPoints(self):
         return self.points
 
