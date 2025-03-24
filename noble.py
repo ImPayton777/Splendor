@@ -3,13 +3,14 @@ import pygame as pg
 
 class Noble(pg.sprite.Sprite):
     def __init__(self, coord, white, blue, green, red, brown, points):
+        super(Noble, self).__init__()
         self.whiteCost = white
         self.blueCost = blue
         self.greenCost = green
         self.redCost = red
         self.brownCost = brown
         self.points = points
-        
+        self.image = pg.image.load(os.path.join('assets', 'nobleCard.png')).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = coord[0]
         self.rect.y = coord[1]

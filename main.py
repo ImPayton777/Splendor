@@ -173,18 +173,19 @@ class Main():
 
         #Creates Nobles
         #0 = white   1 = blue   2 = green   3 - red   4 - brown
-        """
-        nobles.add(c,0,0,4,4,0,3)
-        nobles.add(c,3,0,0,3,3,3)
-        nobles.add(c,4,4,0,0,0,3)
-        nobles.add(c,4,0,0,0,4,3)
-        nobles.add(c,0,4,4,0,0,3)
-        nobles.add(c,0,3,3,3,0,3)
-        nobles.add(c,3,3,3,0,0,3)
-        nobles.add(c,0,0,0,4,4,3)
-        nobles.add(c,3,3,0,0,3,3)
-        nobles.add(c,0,0,3,3,3,3)
-        """
+        c = (2000, 50)
+
+        nobles.add(Noble(c,0,0,4,4,0,3))
+        nobles.add(Noble(c,3,0,0,3,3,3))
+        nobles.add(Noble(c,4,4,0,0,0,3))
+        nobles.add(Noble(c,4,0,0,0,4,3))
+        nobles.add(Noble(c,0,4,4,0,0,3))
+        nobles.add(Noble(c,0,3,3,3,0,3))
+        nobles.add(Noble(c,3,3,3,0,0,3))
+        nobles.add(Noble(c,0,0,0,4,4,3))
+        nobles.add(Noble(c,3,3,0,0,3,3))
+        nobles.add(Noble(c,0,0,3,3,3,3))
+        
         #listify token groups and will be piles
         wT = list(whiteTokens)
         blT = list(blueTokens)
@@ -621,6 +622,7 @@ class Main():
                 pg.draw.rect(screen, (255,0,0), Rect(1095, 1260, 130, 70))
                 font.render_to(screen, (965, 1270), "YES", (0,0,0), None, size=50)
                 font.render_to(screen, (1115, 1270), "NO", (0,0,0), None, size=50)
+            #Inventory Draw
             pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 430))
             font.render_to(screen, (5, 1025), "Cards:", (255,69,0), None, size=50)
             font.render_to(screen, (5, 1070), " White: " + str(cds[0]) + " Blue: " + str(cds[1]) +" Green: " + str(cds[2]), (255,69,0), None, size=50)
@@ -629,6 +631,7 @@ class Main():
             font.render_to(screen, (5, 1225), "Tokens:", (255,69,0), None, size=50)
             font.render_to(screen, (5, 1270), " White: " + str(tokenns[0]) + " Blue: " + str(tokenns[1]) +" Green: " + str(tokenns[2]), (255,69,0), None, size=50)
             font.render_to(screen, (5, 1325), " Red: " + str(tokenns[3]) + " Brown: " + str(tokenns[4]), (255,69,0), None, size=50)
+            #Sprite drawing
             lvl1.draw(screen)
             lvl2.draw(screen)
             lvl3.draw(screen)
@@ -637,6 +640,8 @@ class Main():
             greenTokens.draw(screen)
             redTokens.draw(screen)
             brownTokens.draw(screen)
+            nobles.draw(screen)
+            #Title draw
             font.render_to(screen, (920, 5), "Current Player:", FONTCOLOR, None, size=50)
             if player == p1:
                 font.render_to(screen, (970, 75), "Player 1", FONTCOLOR, None, size=50)
@@ -645,6 +650,7 @@ class Main():
             font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
             font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
             font.render_to(screen, (5, 965), "Inventory", FONTCOLOR, None, size=50)
+            #Flipped cards draw
             if l3c1 != None:
                 font.render_to(screen, (260, 60), str(p31), (0,0,0), None, size=45)
                 drawCardType(screen, font,(325, 65),l3c1)
