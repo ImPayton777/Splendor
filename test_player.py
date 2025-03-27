@@ -2,6 +2,7 @@ import unittest
 from player import Player
 from tokens import Tokens
 from card import Card
+from noble import Noble
 import pygame as pg
 
 class testPlayer(unittest.TestCase):
@@ -115,6 +116,32 @@ class testPlayer(unittest.TestCase):
         self.assertEqual(p.greentokens,[])
         self.assertEqual(p.redtokens,[])
         self.assertEqual(p.browntokens,[])
+
+    def test_checkNoble1(self):
+        p = Player()
+        #0 = white   1 = blue   2 = green   3 - red   4 - brown
+        p.whiteCards = 4
+        p.blueCards = 4
+        p.greenCards = 0
+        p.redCards = 3
+        p.brownCards = 3
+        nobles = [Noble((0,0),0,0,4,4,0,3),Noble((0,0),3,0,0,3,3,3),Noble((0,0),4,4,0,0,0,3)]
+        self.assertEqual(p.checkNoble(nobles),[nobles[1],nobles[2]])
+        self.assertEqual(len(p.nobles),2)
+        self.assertEqual(p.getTotalPoints(),6)
+
+    def test_checkNoble2(self):
+        p = Player()
+        p.whiteCards = 0
+        p.blueCards = 0
+        p.greenCards = 0
+        p.redCards = 0
+        p.brownCards = 0
+        nobles = [Noble((0,0),0,0,4,4,0,3),Noble((0,0),3,0,0,3,3,3),Noble((0,0),4,4,0,0,0,3)]
+        self.assertEqual(p.checkNoble(nobles),[])
+        self.assertEqual(len(p.nobles),0)
+        self.assertEqual(p.getTotalPoints(),0)
+        
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
