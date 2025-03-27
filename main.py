@@ -616,9 +616,11 @@ class Main():
             if player.getTotalPoints() > 14:
                 running = False
 
+            #I don't know how nobles are going to be drawn yet but this takes the image off of the board.
             nob_check = player.checkNoble(cur_nobles)
             if len(nob_check) != 0:
                 for i in nob_check:
+                    cur_nobles.remove(i)
                     i.update(1400)
 
             #Draw the board
