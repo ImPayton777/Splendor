@@ -250,7 +250,6 @@ class Main():
         n.remove(n2)
         n3 = choice(n)
         n.remove(n3)
-
         cur_nobles = [n1,n2,n3]
 
         #create players
@@ -558,8 +557,6 @@ class Main():
                         name = "Shop:"
                         shoppos = [True, True, True]
 
-
-
             pt = player.getCurrency()
             cds = player.getCards()
             tokenns = player.getTokens()
@@ -620,6 +617,9 @@ class Main():
                 running = False
 
             nob_check = player.checkNoble(cur_nobles)
+            if len(nob_check) != 0:
+                for i in nob_check:
+                    i.update(1400)
 
             #Draw the board
             screen.fill((0, 0, 0))
