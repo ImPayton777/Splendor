@@ -83,3 +83,6 @@ class Card(pg.sprite.Sprite):
 
     def getCardType(self):
         return self.tokenType
+    
+    def getCords(self):
+        return [self.rect.x,self.rect.y]
