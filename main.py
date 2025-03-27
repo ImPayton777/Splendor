@@ -246,10 +246,13 @@ class Main():
         #Pulls out random nobles
         n1 = choice(n)
         n.remove(n1)
+        n1.update(-1000,100)
         n2 = choice(n)
         n.remove(n2)
+        n2.update(-1000,300)
         n3 = choice(n)
         n.remove(n3)
+        n3.update(-1000,500)
         cur_nobles = [n1,n2,n3]
 
         #create players
@@ -587,6 +590,11 @@ class Main():
             if l3c4 != None:
                 c34 = l3c4.getCost()
 
+            #Noble Costs
+            cn1 = n1.getCost()
+            cn2 = n2.getCost()
+            cn3 = n3.getCost()
+
             #Card points
             if l1c1 != None:
                 p11 = l1c1.getPoints()
@@ -613,6 +621,11 @@ class Main():
             if l3c4 != None:
                 p34 = l3c4.getPoints()
 
+            #Noble points
+            pn1 = n1.getPoints()
+            pn2 = n2.getPoints()
+            pn3 = n3.getPoints()
+
             if player.getTotalPoints() > 14:
                 running = False
 
@@ -625,6 +638,7 @@ class Main():
 
             #Draw the board
             screen.fill((0, 0, 0))
+            #Shop Draw
             pg.draw.rect(screen, (100,100,100), Rect(940, 790, 300, 560))
             font.render_to(screen, (950, 800), name, (255,69,0), None, size=50)
             if buying:
@@ -668,7 +682,7 @@ class Main():
             font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
             font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
             font.render_to(screen, (5, 965), "Inventory", FONTCOLOR, None, size=50)
-            #Flipped cards draw
+            #Flipped cards info draw
             if l3c1 != None:
                 font.render_to(screen, (260, 60), str(p31), (0,0,0), None, size=45)
                 drawCardType(screen, font,(325, 65),l3c1)
@@ -767,6 +781,27 @@ class Main():
                 font.render_to(screen, (770, 670), "Gr: " + str(c14[2]), (0,0,0), None, size=25)
                 font.render_to(screen, (770, 700), "Rd: " + str(c14[3]), (0,0,0), None, size=25)
                 font.render_to(screen, (770, 730), "Br: " + str(c14[4]), (0,0,0), None, size=25)
+            #Noble info draw
+            font.render_to(screen, (1005, 155), str(pn1), (0,0,0), None, size=45)
+            font.render_to(screen, (1005, 190), "Wh: " + str(cn1[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 210), "Bl: " + str(cn1[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 230), "Gr: " + str(cn1[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 250), "Rd: " + str(cn1[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 270), "Br: " + str(cn1[4]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 355), str(pn2), (0,0,0), None, size=45)
+            font.render_to(screen, (1005, 390), "Wh: " + str(cn2[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 410), "Bl: " + str(cn2[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 430), "Gr: " + str(cn2[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 450), "Rd: " + str(cn2[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 470), "Br: " + str(cn2[4]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 555), str(pn3), (0,0,0), None, size=45)
+            font.render_to(screen, (1005, 590), "Wh: " + str(cn3[0]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 610), "Bl: " + str(cn3[1]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 630), "Gr: " + str(cn3[2]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 650), "Rd: " + str(cn3[3]), (0,0,0), None, size=25)
+            font.render_to(screen, (1005, 670), "Br: " + str(cn3[4]), (0,0,0), None, size=25)
+
+            #UE(USER ERROR) HAPPENED
             if invalid:
                 pg.draw.rect(screen, (255,255,255), Rect(10, 10, 1280, 1380))
                 font.render_to(screen, (375, 150), "!!!INVALID MOVE!!!", (255,0,0), None, size=60)
