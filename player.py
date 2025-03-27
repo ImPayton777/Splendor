@@ -2,6 +2,7 @@ import os
 import pygame as pg
 from card import Card
 from tokens import Tokens
+from noble import Noble
 
 class Player():
 
@@ -37,6 +38,7 @@ class Player():
         self.redtokens = []
         self.browntokens = []
         self.cards = []
+        self.nobles = []
         #total units of each gem type(cards+tokens)
         self.whiteCards = 0
         self.whiteTokens = 0
@@ -97,6 +99,24 @@ class Player():
             self.brownCards += 1
         self.cards.append(card)
         return returns
+
+    def checkNoble(self, nobles):
+        gained = []
+        cards = self.getCards()
+        for nob in nobles:
+            cost = nob.getCost()
+            valid = True
+            for i in range(len(cards)):
+                if cards[i] >= cost[i]:
+                    continue
+                else:
+                    valid = False
+                    break
+            if valid == True:
+                self.nobles.append(nob)
+                self.totalPoints += nob.getPoints()
+                gained.append(nob)
+        return gained
 
     #Give player tokens
     def takeToken(self, tokenns):
