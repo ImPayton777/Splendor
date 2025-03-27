@@ -186,6 +186,8 @@ class Main():
         nobles.add(Noble(c,3,3,0,0,3,3))
         nobles.add(Noble(c,0,0,3,3,3,3))
         
+        n = list(nobles)
+
         #listify token groups and will be piles
         wT = list(whiteTokens)
         blT = list(blueTokens)
@@ -240,6 +242,16 @@ class Main():
         l3c4 = choice(l3)
         l3.remove(l3c4)
         l3c4.flip(710)
+
+        #Pulls out random nobles
+        n1 = choice(n)
+        n.remove(n1)
+        n2 = choice(n)
+        n.remove(n2)
+        n3 = choice(n)
+        n.remove(n3)
+
+        cur_nobles = [n1,n2,n3]
 
         #create players
         p1 = Player()
@@ -546,6 +558,8 @@ class Main():
                         name = "Shop:"
                         shoppos = [True, True, True]
 
+
+
             pt = player.getCurrency()
             cds = player.getCards()
             tokenns = player.getTokens()
@@ -604,6 +618,8 @@ class Main():
 
             if player.getTotalPoints() > 14:
                 running = False
+
+            nob_check = player.checkNoble(cur_nobles)
 
             #Draw the board
             screen.fill((0, 0, 0))
