@@ -389,7 +389,7 @@ class Main():
                                 if len(l1) > 0:
                                     l1c1 = choice(l1)
                                     l1.remove(l1c1)
-                                    l1c1.update(200)
+                                    l1c1.flip(200)
                                 else: 
                                     l1c1 = None
                             if selectedCard == l1c2:
@@ -397,7 +397,7 @@ class Main():
                                 if len(l1) > 0:
                                     l1c2 = choice(l1)
                                     l1.remove(l1c2)
-                                    l1c2.update(370)
+                                    l1c2.flip(370)
                                 else:
                                     l1c2 = None
                             if selectedCard == l1c3:
@@ -405,7 +405,7 @@ class Main():
                                 if len(l1) > 0:
                                     l1c3 = choice(l1)
                                     l1.remove(l1c3) 
-                                    l1c3.update(540)
+                                    l1c3.flip(540)
                                 else:
                                     l1c3 = None
                             if selectedCard == l1c4:
@@ -413,7 +413,7 @@ class Main():
                                 if len(l1) > 0:
                                     l1c4 = choice(l1)
                                     l1.remove(l1c4)
-                                    l1c4.update(710)
+                                    l1c4.flip(710)
                                 else:
                                     l1c4 = None
                             if selectedCard == l2c1:
@@ -421,7 +421,7 @@ class Main():
                                 if len(l2) > 0:
                                     l2c1 = choice(l2)
                                     l2.remove(l2c1)
-                                    l2c1.update(200)
+                                    l2c1.flip(200)
                                 else:
                                     l2c1 = None
                             if selectedCard == l2c2:
@@ -429,7 +429,7 @@ class Main():
                                 if len(l2) > 0:
                                     l2c2 = choice(l2)
                                     l2.remove(l2c2)
-                                    l2c2.update(370)
+                                    l2c2.flip(370)
                                 else:
                                     l2c2 = None
                             if selectedCard == l2c3:
@@ -437,7 +437,7 @@ class Main():
                                 if len(l2) > 0:
                                     l2c3 = choice(l2)
                                     l2.remove(l2c3)
-                                    l2c3.update(540)
+                                    l2c3.flip(540)
                                 else:
                                     l2c3 = None
                             if selectedCard == l2c4:
@@ -445,7 +445,7 @@ class Main():
                                 if len(l2) > 0:
                                     l2c4 = choice(l2)
                                     l2.remove(l2c4)
-                                    l2c4.update(710)
+                                    l2c4.flip(710)
                                 else:
                                     l2c4 = None
                             if selectedCard == l3c1:
@@ -453,7 +453,7 @@ class Main():
                                 if len(l3) > 0:
                                     l3c1 = choice(l3)
                                     l3.remove(l3c1) 
-                                    l3c1.update(200)
+                                    l3c1.flip(200)
                                 else:
                                     l3c1 = None
                             if selectedCard == l3c2:
@@ -461,7 +461,7 @@ class Main():
                                 if len(l3) > 0:
                                     l3c2 = choice(l3)
                                     l3.remove(l3c2)
-                                    l3c2.update(370)
+                                    l3c2.flip(370)
                                 else:
                                     l3c2 = None
                             if selectedCard == l3c3:
@@ -469,7 +469,7 @@ class Main():
                                 if len(l3) > 0:
                                     l3c3 = choice(l3)
                                     l3.remove(l3c3)
-                                    l3c3.update(540)
+                                    l3c3.flip(540)
                                 else:
                                     l3c3 = None
                             if selectedCard == l3c4:
@@ -477,7 +477,7 @@ class Main():
                                 if len(l3) > 0:
                                     l3c4 = choice(l3)
                                     l3.remove(l3c4)
-                                    l3c4.update(710)
+                                    l3c4.flip(710)
                                 else:
                                     l3c4 = None
                             selectedCard = None
