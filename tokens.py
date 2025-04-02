@@ -18,6 +18,8 @@ class Tokens(pg.sprite.Sprite):
             self.image = pg.image.load(os.path.join('assets', 'redToken.png')).convert_alpha()
         elif gem == 4:
             self.image = pg.image.load(os.path.join('assets', 'brownToken.png')).convert_alpha()
+        elif gem == 5:
+            self.image = pg.image.load(os.path.join('assets', 'goldToken.png')).convert_alpha()
         else:
             raise ValueError("Not a gem type")
         self.tokenType = gem
