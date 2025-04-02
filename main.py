@@ -820,7 +820,7 @@ def drawCardType(screen,font,coords,card):
         if card.getCardType() == 0:
             font.render_to(screen, coords, "White", (255,255,255), None, size=25)
         elif card.getCardType() == 1:
-            font.render_to(screen, coords, "Blue", (2,122,227), None, size=25)
+            font.render_to(screen, coords, "Blue", (2,13,227), None, size=25)
         elif card.getCardType() == 2:
             font.render_to(screen, coords, "Green", (1,54,2), None, size=25)
         elif card.getCardType() == 3:
