@@ -34,7 +34,7 @@ class Card(pg.sprite.Sprite):
         else:
             raise ValueError("Not a card level")
         self.tokenType = gem
-        self.lvl = lvl
+        self.level = lvl
         self.rect = self.image.get_rect()
         self.rect.x = coord[0]
         self.rect.y = coord[1]

@@ -31,6 +31,7 @@ class Main():
         greenTokens = pg.sprite.Group()
         redTokens = pg.sprite.Group()
         brownTokens = pg.sprite.Group()
+        goldTokens = pg.sprite.Group()
         nobles = pg.sprite.Group()
 
         c1 = (50,550)
@@ -158,6 +159,7 @@ class Main():
         t2 = (320,850)
         t3 = (470,850)
         t4 = (620,850)
+        t5 = (770, 850)
         #create tokens
         #0 = white   1 = blue   2 = green   3 - red   4 - brown
         for i in range(4):
@@ -170,6 +172,8 @@ class Main():
             redTokens.add(Tokens(t3, 3))
         for i in range(4):
             brownTokens.add(Tokens(t4, 4))
+        for i in range(5):
+            goldTokens.add(Tokens(t5, 5))
 
         #Creates Nobles
         #0 = white   1 = blue   2 = green   3 - red   4 - brown
@@ -672,6 +676,7 @@ class Main():
             greenTokens.draw(screen)
             redTokens.draw(screen)
             brownTokens.draw(screen)
+            goldTokens.draw(screen)
             nobles.draw(screen)
             #Title draw
             font.render_to(screen, (920, 5), "Current Player:", FONTCOLOR, None, size=50)
