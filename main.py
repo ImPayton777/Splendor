@@ -280,6 +280,7 @@ class Main():
         overStock = False
         endTurn = False
         invalid = False
+        help = False
 
         # Startup the main game loop
         running = True
@@ -517,6 +518,14 @@ class Main():
                     if invalid and 350 <= x <= 950 and 350 <= y <= 650:
                         invalid = False
 
+                    #(150, 5, 40, 40)
+                    #HELP BUTTON
+                    if help == False and 150 <= x <= 190 and 5 <= y <= 45:
+                        help = True
+
+                    if help == True and 15 <= x <= 55 and 15 <= y <= 55:
+                        help = False
+
                     #YES TOKEN
                     if 955 <= x <= 1085 and 1260 <= y <= 1330 and grabin:
                         chips = player.getTokens()
@@ -687,6 +696,7 @@ class Main():
             font.render_to(screen, (5, 5), "Cards", FONTCOLOR, None, size=50)
             font.render_to(screen, (5, 800), "Tokens", FONTCOLOR, None, size=50)
             font.render_to(screen, (5, 965), "Inventory", FONTCOLOR, None, size=50)
+
             #Flipped cards info draw
             if l3c1 != None:
                 font.render_to(screen, (260, 60), str(p31), (0,0,0), None, size=45)
@@ -812,6 +822,27 @@ class Main():
                 font.render_to(screen, (375, 150), "!!!INVALID MOVE!!!", (255,0,0), None, size=60)
                 pg.draw.rect(screen, (255,0,0), Rect(350, 350, 600, 300))
                 font.render_to(screen, (500, 500), "CONFIRM.", (0,0,0), None, size=60)
+
+            #Draw Help Button
+            pg.draw.rect(screen, (255,255,255), Rect(150, 5, 40, 40))
+            font.render_to(screen, (155, 17.5), "Help", (0,0,0), None, size=15)
+
+            if help == True:
+                pg.draw.rect(screen, (100,100,100), Rect(5, 5, 1290, 700))
+                pg.draw.rect(screen, (255,0,0), Rect(10, 10, 40, 40))
+                font.render_to(screen, (15, 15), "X", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 15), "How to play:", (255,0,0), None, size=45)
+                font.render_to(screen, (75, 65), "On your turn you can:", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 115), "- Take 3 gem tokens of different colors.", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 165), "- Take 2 gem tokens of the same color.", (100,0,0), None, size=45)
+
+                font.render_to(screen, (75, 215), "- Reserve 1 development card and take 1 gold token", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 265), "- Purchase 1 face-up development card from the middle", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 315), "  of the table or a previously reserved one.", (100,0,0), None, size=45)
+
+
+
+
             pg.display.flip()
 
     #0 = white   1 = blue   2 = green   3 - red   4 - brown
