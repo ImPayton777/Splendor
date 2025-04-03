@@ -116,6 +116,7 @@ class Player():
                 self.nobles.append(nob)
                 self.totalPoints += nob.getPoints()
                 gained.append(nob)
+                break
         return gained
 
     #Give player tokens
