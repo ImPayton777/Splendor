@@ -198,6 +198,7 @@ class Main():
         gT = list(greenTokens)
         rT = list(redTokens)
         brT = list(brownTokens)
+        gldT = list(goldTokens)
 
         #Tokens in shop
         shop = []
@@ -281,6 +282,7 @@ class Main():
         endTurn = False
         invalid = False
         help = False
+        reserve = False
 
         # Startup the main game loop
         running = True
@@ -300,10 +302,11 @@ class Main():
                     x,y = pos
                     if len(cs) > 0 and not invalid:
                         # handles getting/returning tokens
-                        if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying:
+                        if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying and not reserve:
                             grabin = True
                             name = "Get tokens:"
                             tp = cs[0].getType()
+                            #Return tokens from shop
                             if x > 940:
                                 i = shop.index(cs[0])
                                 if tp == 0:
@@ -380,9 +383,21 @@ class Main():
                                         tT = (brT.pop(0))
                                         tT.update(330, len(shop)*114+10)
                                         shop.append(tT)
-                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin:
+                                    if tp == 5:
+                                        tT = (gldT.pop(0))
+                                        tT.update(330, len(shop)*114+10)
+                                        shop.append(tT)
+                                        reserve = True
+
+                        #BUYING
+                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin and not reserve:
                             buying = True
                             selectedCard = cs[0]
+
+                        #RESERVING
+                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin and reserve:
+                            selectedCard = cs[0]
+
                     #YES CARD
                     if 950 <= x <= 1230 and 950 <= y <= 1110 and buying:
                         canUse = player.getCurrency()
@@ -513,6 +528,118 @@ class Main():
                     if 950 <= x <= 1230 and 1150 <= y <= 1310 and buying:
                         selectedCard = None
                         buying = False
+
+                    #YES RESERVE
+                    if 950 <= x <= 1230 and 950 <= y <= 1110 and reserve:
+                        able = player.reserveCard(selectedCard)
+                        if able == -1:
+                            invalid = True
+                            reserve = False
+                        else:
+                            if selectedCard == l1c1:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c1 = choice(l1)
+                                    l1.remove(l1c1)
+                                    l1c1.flip(200)
+                                else:
+                                    l1c1 = None
+                            if selectedCard == l1c2:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c2 = choice(l1)
+                                    l1.remove(l1c2)
+                                    l1c2.flip(370)
+                                else:
+                                    l1c2 = None
+                            if selectedCard == l1c3:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c3 = choice(l1)
+                                    l1.remove(l1c3)
+                                    l1c3.flip(540)
+                                else:
+                                    l1c3 = None
+                            if selectedCard == l1c4:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c4 = choice(l1)
+                                    l1.remove(l1c4)
+                                    l1c4.flip(710)
+                                else:
+                                    l1c4 = None
+                            if selectedCard == l2c1:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c1 = choice(l2)
+                                    l2.remove(l2c1)
+                                    l2c1.flip(200)
+                                else:
+                                    l2c1 = None
+                            if selectedCard == l2c2:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c2 = choice(l2)
+                                    l2.remove(l2c2)
+                                    l2c2.flip(370)
+                                else:
+                                    l2c2 = None
+                            if selectedCard == l2c3:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c3 = choice(l2)
+                                    l2.remove(l2c3)
+                                    l2c3.flip(540)
+                                else:
+                                    l2c3 = None
+                            if selectedCard == l2c4:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c4 = choice(l2)
+                                    l2.remove(l2c4)
+                                    l2c4.flip(710)
+                                else:
+                                    l2c4 = None
+                            if selectedCard == l3c1:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c1 = choice(l3)
+                                    l3.remove(l3c1)
+                                    l3c1.flip(200)
+                                else:
+                                    l3c1 = None
+                            if selectedCard == l3c2:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c2 = choice(l3)
+                                    l3.remove(l3c2)
+                                    l3c2.flip(370)
+                                else:
+                                    l3c2 = None
+                            if selectedCard == l3c3:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c3 = choice(l3)
+                                    l3.remove(l3c3)
+                                    l3c3.flip(540)
+                                else:
+                                    l3c3 = None
+                            if selectedCard == l3c4:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c4 = choice(l3)
+                                    l3.remove(l3c4)
+                                    l3c4.flip(710)
+                                else:
+                                    l3c4 = None
+                            selectedCard = None
+                            turn = (turn+1)%2
+                            reserve = False
+
+                    #NO RESERVE
+                    if 950 <= x <= 1230 and 1150 <= y <= 1310 and reserve:
+                        selectedCard = None
+                        reserve = False
 
                     #Stop invalid screen
                     if invalid and 350 <= x <= 950 and 350 <= y <= 650:
@@ -667,6 +794,14 @@ class Main():
                 pg.draw.rect(screen, (255,0,0), Rect(1095, 1260, 130, 70))
                 font.render_to(screen, (965, 1270), "YES", (0,0,0), None, size=50)
                 font.render_to(screen, (1115, 1270), "NO", (0,0,0), None, size=50)
+            if reserve:
+                spot = selectedCard.getCords()
+                pg.draw.rect(screen, (255,255,255), Rect(spot[0]-5, spot[1]-5, 160, 220))
+                font.render_to(screen, (950, 875), "Reserve Card?", (255,0,0), None, size=40)
+                pg.draw.rect(screen, (0,255,0), Rect(950, 950, 280, 160))
+                pg.draw.rect(screen, (255,0,0), Rect(950, 1150, 280, 160))
+                font.render_to(screen, (1025, 1000), "YES", (0,0,0), None, size=60)
+                font.render_to(screen, (1045, 1200), "NO", (0,0,0), None, size=60)
             #Inventory Draw
             pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 430))
             font.render_to(screen, (5, 1025), "Cards:", (255,69,0), None, size=50)
@@ -824,7 +959,7 @@ class Main():
                 font.render_to(screen, (500, 500), "CONFIRM.", (0,0,0), None, size=60)
 
             #Draw Help Button
-            pg.draw.rect(screen, (255,255,255), Rect(150, 5, 40, 40))
+            pg.draw.rect(screen, (255,165,0), Rect(150, 5, 40, 40))
             font.render_to(screen, (155, 17.5), "Help", (0,0,0), None, size=15)
 
             if help == True:
