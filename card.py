@@ -66,6 +66,11 @@ class Card(pg.sprite.Sprite):
         self.rect.x += deltax
         self.rect.y += deltay
 
+    #moves a card to (x,y)
+    def move(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
+
     #a getter for then point value of a card
     def getPoints(self):
         return self.points
