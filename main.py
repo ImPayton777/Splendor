@@ -204,7 +204,7 @@ class Main():
         shop = []
 
         #put all sprites in a list
-        sprites = l1 + l2 + l3 + list(whiteTokens) + list(blueTokens) + list(greenTokens) + list(redTokens) + list(brownTokens) + list(goldTokens)
+        sprites = l1 + l2 + l3 + list(whiteTokens) + list(blueTokens) + list(greenTokens) + list(redTokens) + list(brownTokens)
 
         # Get font setup
         pg.freetype.init()
@@ -328,6 +328,17 @@ class Main():
                             else:
                                 if len(shop) > 2:
                                     invalid = True
+                                if len(shop) == 2:
+                                    if shop[0].getType() == 0 and shop[1].getType() == 0:
+                                        invalid = True
+                                    if shop[0].getType() == 1 and shop[1].getType() == 1:
+                                        invalid = True
+                                    if shop[0].getType() == 2 and shop[1].getType() == 2:
+                                        invalid = True
+                                    if shop[0].getType() == 3 and shop[1].getType() == 3:
+                                        invalid = True
+                                    if shop[0].getType() == 4 and shop[1].getType() == 4:
+                                        invalid = True
                                 #Grab 2 of same type with another
                                 if len(shop) == 2 and tp == 0:
                                     if shop[0].getType() == 0 or shop[1].getType() == 0:
@@ -519,7 +530,7 @@ class Main():
                         selectedCard = None
                         buying = False
 
-                    #YES RESERVE
+                    #YES RESERVE TODO
                     if 950 <= x <= 1230 and 1230 <= y <= 1330 and buying and not invalid:
                         if len(gldT) > 0:
                             gldT[0].update(1400)
@@ -665,7 +676,7 @@ class Main():
                             turn = (turn+1)%2
 
                     #NO TOKEN
-                    if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin and not reserve:
+                    if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin:
                         while len(shop) != 0:
                             tp = shop[0].getType()    
                             if tp == 0:
