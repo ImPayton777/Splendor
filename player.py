@@ -14,6 +14,7 @@ class Player():
     greentokens = []
     redtokens = []
     browntokens = []
+    goldtokens = []
     cards = []
     reserve = []
     #total units of each gem type(cards+tokens)
@@ -27,6 +28,7 @@ class Player():
     redTokens = 0
     brownCards = 0
     brownTokens = 0
+    goldTokens = 0
 
     #creates a player
     def __init__(self):
@@ -38,6 +40,7 @@ class Player():
         self.greentokens = []
         self.redtokens = []
         self.browntokens = []
+        self.goldtokens = []
         self.cards = []
         self.nobles = []
         self.reserve = []
@@ -52,13 +55,16 @@ class Player():
         self.redTokens = 0
         self.brownCards = 0
         self.brownTokens = 0
+        self.goldTokens = 0
 
     #Reserves a card
-    def reserveCard(self, card):
-        if len(reserve) >= 3:
+    def reserveCard(self, card, token):
+        if len(self.reserve) >= 3:
             return -1
         else:
-            reserve += card
+            self.reserve.append(card)
+            self.goldtokens.append(token)
+            self.goldTokens += 1
             return 1
 
     #Give player a card 
