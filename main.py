@@ -204,7 +204,7 @@ class Main():
         shop = []
 
         #put all sprites in a list
-        sprites = l1 + l2 + l3 + list(whiteTokens) + list(blueTokens) + list(greenTokens) + list(redTokens) + list(brownTokens)
+        sprites = l1 + l2 + l3 + list(whiteTokens) + list(blueTokens) + list(greenTokens) + list(redTokens) + list(brownTokens) + list(goldTokens)
 
         # Get font setup
         pg.freetype.init()
@@ -282,7 +282,6 @@ class Main():
         endTurn = False
         invalid = False
         help = False
-        reserve = False
 
         # Startup the main game loop
         running = True
@@ -302,7 +301,7 @@ class Main():
                     x,y = pos
                     if len(cs) > 0 and not invalid:
                         # handles getting/returning tokens
-                        if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying and not reserve:
+                        if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying:
                             grabin = True
                             name = "Get tokens:"
                             tp = cs[0].getType()
@@ -383,23 +382,14 @@ class Main():
                                         tT = (brT.pop(0))
                                         tT.update(330, len(shop)*114+10)
                                         shop.append(tT)
-                                    if tp == 5:
-                                        tT = (gldT.pop(0))
-                                        tT.update(330, len(shop)*114+10)
-                                        shop.append(tT)
-                                        reserve = True
 
                         #BUYING
-                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin and not reserve:
+                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin:
                             buying = True
                             selectedCard = cs[0]
 
-                        #RESERVING
-                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin and reserve:
-                            selectedCard = cs[0]
-
                     #YES CARD
-                    if 950 <= x <= 1230 and 950 <= y <= 1110 and buying:
+                    if 950 <= x <= 1230 and 970 <= y <= 1070 and buying and not invalid:
                         canUse = player.getCurrency()
                         cost = selectedCard.getCost()
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
@@ -525,19 +515,22 @@ class Main():
                             buying = False
 
                     #NO CARD
-                    if 950 <= x <= 1230 and 1150 <= y <= 1310 and buying:
+                    if 950 <= x <= 1230 and 1100 <= y <= 1200 and buying:
                         selectedCard = None
                         buying = False
 
                     #YES RESERVE
-                    if 950 <= x <= 1230 and 950 <= y <= 1110 and reserve:
-                        able = player.reserveCard(selectedCard)
+                    if 950 <= x <= 1230 and 1230 <= y <= 1330 and buying and not invalid:
+                        if len(gldT) > 0:
+                            gldT[0].update(1400)
+                            able = player.reserveCard(selectedCard, gldT.pop(0))
+                        else:
+                            able = player.reserveCard(selectedCard)
                         if able == -1:
                             invalid = True
-                            reserve = False
                         else:
                             if selectedCard == l1c1:
-                                selectedCard.update(1400)
+                                selectedCard.move(730,1025)
                                 if len(l1) > 0:
                                     l1c1 = choice(l1)
                                     l1.remove(l1c1)
@@ -634,12 +627,7 @@ class Main():
                                     l3c4 = None
                             selectedCard = None
                             turn = (turn+1)%2
-                            reserve = False
-
-                    #NO RESERVE
-                    if 950 <= x <= 1230 and 1150 <= y <= 1310 and reserve:
-                        selectedCard = None
-                        reserve = False
+                            buying = False
 
                     #Stop invalid screen
                     if invalid and 350 <= x <= 950 and 350 <= y <= 650:
@@ -677,7 +665,7 @@ class Main():
                             turn = (turn+1)%2
 
                     #NO TOKEN
-                    if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin:
+                    if 1095 <= x <= 1225 and 1260 <= y <= 1330 and grabin and not reserve:
                         while len(shop) != 0:
                             tp = shop[0].getType()    
                             if tp == 0:
@@ -779,29 +767,24 @@ class Main():
             #Draw the board
             screen.fill((0, 0, 0))
             #Shop Draw
-            pg.draw.rect(screen, (100,100,100), Rect(940, 790, 300, 560))
+            pg.draw.rect(screen, (100,100,100), Rect(940, 790, 300, 580))
             font.render_to(screen, (950, 800), name, (255,69,0), None, size=50)
             if buying:
                 spot = selectedCard.getCords()
                 pg.draw.rect(screen, (255,255,255), Rect(spot[0]-5, spot[1]-5, 160, 220))
-                font.render_to(screen, (950, 875), "Buy Card?", (255,0,0), None, size=50)
-                pg.draw.rect(screen, (0,255,0), Rect(950, 950, 280, 160))
-                pg.draw.rect(screen, (255,0,0), Rect(950, 1150, 280, 160))
-                font.render_to(screen, (1025, 1000), "YES", (0,0,0), None, size=60)
-                font.render_to(screen, (1045, 1200), "NO", (0,0,0), None, size=60)
+                font.render_to(screen, (950, 855), "Buy Card?", (255,0,0), None, size=50)
+                pg.draw.rect(screen, (0,255,0), Rect(950, 970, 280, 100))
+                pg.draw.rect(screen, (255,0,0), Rect(950, 1100, 280, 100))
+                font.render_to(screen, (1025, 995), "YES", (0,0,0), None, size=60)
+                font.render_to(screen, (1045, 1125), "NO", (0,0,0), None, size=60)
+                pg.draw.rect(screen, (255,215,0), Rect(950, 1230, 280, 100))
+                font.render_to(screen, (975, 1255), "Reserve", (0,0,0), None, size=60)
             if grabin:
                 pg.draw.rect(screen, (0,255,0), Rect(955, 1260, 130, 70))
                 pg.draw.rect(screen, (255,0,0), Rect(1095, 1260, 130, 70))
                 font.render_to(screen, (965, 1270), "YES", (0,0,0), None, size=50)
                 font.render_to(screen, (1115, 1270), "NO", (0,0,0), None, size=50)
-            if reserve:
-                spot = selectedCard.getCords()
-                pg.draw.rect(screen, (255,255,255), Rect(spot[0]-5, spot[1]-5, 160, 220))
-                font.render_to(screen, (950, 875), "Reserve Card?", (255,0,0), None, size=40)
-                pg.draw.rect(screen, (0,255,0), Rect(950, 950, 280, 160))
-                pg.draw.rect(screen, (255,0,0), Rect(950, 1150, 280, 160))
-                font.render_to(screen, (1025, 1000), "YES", (0,0,0), None, size=60)
-                font.render_to(screen, (1045, 1200), "NO", (0,0,0), None, size=60)
+
             #Inventory Draw
             pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 430))
             font.render_to(screen, (5, 1025), "Cards:", (255,69,0), None, size=50)
