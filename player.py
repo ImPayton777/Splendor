@@ -58,13 +58,14 @@ class Player():
         self.goldTokens = 0
 
     #Reserves a card
-    def reserveCard(self, card, token):
+    def reserveCard(self, card, token = None):
         if len(self.reserve) >= 3:
             return -1
         else:
             self.reserve.append(card)
-            self.goldtokens.append(token)
-            self.goldTokens += 1
+            if token != None:
+                self.goldtokens.append(token)
+                self.goldTokens += 1
             return 1
 
     #Give player a card 
