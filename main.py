@@ -962,12 +962,17 @@ class Main():
                 font.render_to(screen, (15, 15), "X", (100,0,0), None, size=45)
                 font.render_to(screen, (75, 15), "How to play:", (255,0,0), None, size=45)
                 font.render_to(screen, (75, 65), "On your turn you can:", (100,0,0), None, size=45)
-                font.render_to(screen, (75, 115), "- Take 3 gem tokens of different colors.", (100,0,0), None, size=45)
-                font.render_to(screen, (75, 165), "- Take 2 gem tokens of the same color.", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 110), "- Take 3 gem tokens of different colors.", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 155), "- Take 2 gem tokens of the same color.", (100,0,0), None, size=35)
 
-                font.render_to(screen, (75, 215), "- Reserve 1 development card and take 1 gold token", (100,0,0), None, size=45)
-                font.render_to(screen, (75, 265), "- Purchase 1 face-up development card from the middle", (100,0,0), None, size=45)
-                font.render_to(screen, (75, 315), "  of the table or a previously reserved one.", (100,0,0), None, size=45)
+                font.render_to(screen, (75, 205), "- Reserve 1 development card and take 1 gold token.", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 255), "- Purchase 1 face-up development card from the middle of the table", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 300), "  or a previously reserved one. The gem type of a development card is", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 350), "  permanent currency that you can use to purchase other cards. A card", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 400), "  has a point value associated with it.", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 450), "When you have a certain amount of development cards, a noble will", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 500), "automatically visit you and give you 3 points.", (100,0,0), None, size=35)
+                font.render_to(screen, (75, 550), "The first player to 15 points will win the game.", (100,0,0), None, size=35)
 
 
 
