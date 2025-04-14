@@ -541,7 +541,7 @@ class Main():
                             invalid = True
                         else:
                             if selectedCard == l1c1:
-                                selectedCard.move(730,1025)
+                                selectedCard.update(1400)
                                 if len(l1) > 0:
                                     l1c1 = choice(l1)
                                     l1.remove(l1c1)
@@ -944,6 +944,19 @@ class Main():
             font.render_to(screen, (1005, 630), "Gr: " + str(cn3[2]), (0,0,0), None, size=25)
             font.render_to(screen, (1005, 650), "Rd: " + str(cn3[3]), (0,0,0), None, size=25)
             font.render_to(screen, (1005, 670), "Br: " + str(cn3[4]), (0,0,0), None, size=25)
+
+            #Reserve Draw
+            font.render_to(screen, (700, 970), "R", (255,255,255), None, size=50)
+            font.render_to(screen, (700, 1030), "E", (255,255,255), None, size=50)
+            font.render_to(screen, (700, 1090), "S", (255,255,255), None, size=50)
+            font.render_to(screen, (700, 1150), "E", (255,255,255), None, size=50)
+            font.render_to(screen, (700, 1210), "R", (255,255,255), None, size=50)
+            font.render_to(screen, (700, 1270), "V", (255,255,255), None, size=50)
+            font.render_to(screen, (700, 1330), "E", (255,255,255), None, size=50)
+            pg.draw.rect(screen, (49,255,109), Rect(750, 970, 150, 50))
+            pg.draw.rect(screen, (34,177,76), Rect(750, 1020, 150, 160))
+            pg.draw.rect(screen, (49,255,109), Rect(750, 1185, 150, 50))
+            pg.draw.rect(screen, (34,177,76), Rect(750, 1235, 150, 160))
 
             #UE(USER ERROR) HAPPENED
             if invalid:
