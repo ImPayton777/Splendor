@@ -59,7 +59,7 @@ class Player():
 
     #Reserves a card
     def reserveCard(self, card, token = None):
-        if len(self.reserve) >= 3:
+        if len(self.reserve) >= 2:
             return -1
         else:
             self.reserve.append(card)
@@ -191,3 +191,11 @@ class Player():
     #returns token counts of player
     def getTokens(self):
         return [self.whiteTokens, self.blueTokens, self.greenTokens, self.redTokens, self.brownTokens]
+
+    #returns reserve length
+    def reservelen(self):
+        return len(self.reserve)
+
+    #returns the reserve
+    def getreserve(self):
+        return self.reserve
