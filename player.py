@@ -199,3 +199,7 @@ class Player():
     #returns the reserve
     def getreserve(self):
         return self.reserve
+    
+    #remove card from reserve
+    def RR(self, card):
+        self.reserve.remove(card)

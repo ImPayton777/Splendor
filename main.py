@@ -399,6 +399,70 @@ class Main():
                             buying = True
                             selectedCard = cs[0]
 
+                    #BUY RESERVE
+                    #R1
+                    if 750 <= x <= 900 and 970 <= y <= 1180 and player.reservelen() > 0:
+                        selectedCard = player.getreserve()[0]
+                        canUse = player.getCurrency()
+                        cost = selectedCard.getCost()
+                        if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
+                            returns = player.buyCard(selectedCard)
+                            player.RR(selectedCard)
+                            selectedCard = None
+                            turn = (turn+1)%2
+                            buying = False
+                            while len(returns) != 0:
+                                tp = returns[0].getType()
+                                if tp == 0:
+                                    returns[0].move(20,850)
+                                    wT.append(returns.pop(0))
+                                if tp == 1:
+                                    returns[0].move(170,850)
+                                    blT.append(returns.pop(0))
+                                if tp == 2:
+                                    returns[0].move(320,850)
+                                    gT.append(returns.pop(0))
+                                if tp == 3:
+                                    returns[0].move(470,850)
+                                    rT.append(returns.pop(0))
+                                if tp == 4:
+                                    returns[0].move(620,850)
+                                    brT.append(returns.pop(0))
+                        else:
+                            invalid = True
+                            buying = False
+                    #R2
+                    if 750 <= x <= 900 and 1185 <= y <= 1395 and player.reservelen() > 1:
+                        selectedCard = player.getreserve()[1]
+                        canUse = player.getCurrency()
+                        cost = selectedCard.getCost()
+                        if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
+                            returns = player.buyCard(selectedCard)
+                            player.RR(selectedCard)
+                            selectedCard = None
+                            turn = (turn+1)%2
+                            buying = False
+                            while len(returns) != 0:
+                                tp = returns[0].getType()
+                                if tp == 0:
+                                    returns[0].move(20,850)
+                                    wT.append(returns.pop(0))
+                                if tp == 1:
+                                    returns[0].move(170,850)
+                                    blT.append(returns.pop(0))                                    
+                                if tp == 2:
+                                    returns[0].move(320,850)
+                                    gT.append(returns.pop(0))
+                                if tp == 3:
+                                    returns[0].move(470,850)
+                                    rT.append(returns.pop(0))
+                                if tp == 4:
+                                    returns[0].move(620,850)
+                                    brT.append(returns.pop(0))
+                        else:
+                            invalid = True
+                            buying = False
+
                     #YES CARD
                     if 950 <= x <= 1230 and 970 <= y <= 1070 and buying and not invalid:
                         canUse = player.getCurrency()
