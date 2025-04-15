@@ -946,17 +946,54 @@ class Main():
             font.render_to(screen, (1005, 670), "Br: " + str(cn3[4]), (0,0,0), None, size=25)
 
             #Reserve Draw
-            font.render_to(screen, (700, 970), "R", (255,255,255), None, size=50)
-            font.render_to(screen, (700, 1030), "E", (255,255,255), None, size=50)
-            font.render_to(screen, (700, 1090), "S", (255,255,255), None, size=50)
-            font.render_to(screen, (700, 1150), "E", (255,255,255), None, size=50)
-            font.render_to(screen, (700, 1210), "R", (255,255,255), None, size=50)
-            font.render_to(screen, (700, 1270), "V", (255,255,255), None, size=50)
-            font.render_to(screen, (700, 1330), "E", (255,255,255), None, size=50)
-            pg.draw.rect(screen, (49,255,109), Rect(750, 970, 150, 50))
-            pg.draw.rect(screen, (34,177,76), Rect(750, 1020, 150, 160))
-            pg.draw.rect(screen, (49,255,109), Rect(750, 1185, 150, 50))
-            pg.draw.rect(screen, (34,177,76), Rect(750, 1235, 150, 160))
+            if player.reservelen() > 0:
+                rin = player.getreserve()
+                font.render_to(screen, (700, 970), "R", (255,255,255), None, size=50)
+                font.render_to(screen, (700, 1030), "E", (255,255,255), None, size=50)
+                font.render_to(screen, (700, 1090), "S", (255,255,255), None, size=50)
+                font.render_to(screen, (700, 1150), "E", (255,255,255), None, size=50)
+                font.render_to(screen, (700, 1210), "R", (255,255,255), None, size=50)
+                font.render_to(screen, (700, 1270), "V", (255,255,255), None, size=50)
+                font.render_to(screen, (700, 1330), "E", (255,255,255), None, size=50)
+                if rin[0].getLvl() == 1:
+                    c1t = (49,255,109)
+                    c1b = (34,177,76)
+                elif rin[0].getLvl() == 2:
+                    c1t = (255,242,0)
+                    c1b = (207,196,0)
+                else:
+                    c1t = (79,90,255)
+                    c1b = (63,72,204)
+                r1 = rin[0].getCost()
+                pg.draw.rect(screen, c1t, Rect(750, 970, 150, 50))
+                pg.draw.rect(screen, c1b, Rect(750, 1020, 150, 160))
+                font.render_to(screen, (760, 980), str(rin[0].getPoints()), (0,0,0), None, size=45)
+                drawCardType(screen, font,(820, 985), rin[0])
+                font.render_to(screen, (760, 1030), "Wh: " + str(r1[0]), (0,0,0), None, size=25)
+                font.render_to(screen, (760, 1060), "Bl: " + str(r1[1]), (0,0,0), None, size=25)
+                font.render_to(screen, (760, 1090), "Gr: " + str(r1[2]), (0,0,0), None, size=25)
+                font.render_to(screen, (760, 1120), "Rd: " + str(r1[3]), (0,0,0), None, size=25)
+                font.render_to(screen, (760, 1150), "Br: " + str(r1[4]), (0,0,0), None, size=25)
+                if len(rin) == 2:
+                    if rin[1].getLvl() == 1:
+                        c2t = (49,255,109)
+                        c2b = (34,177,76)
+                    elif rin[1].getLvl() == 2:
+                        c2t = (255,242,0)
+                        c2b = (207,196,0)
+                    else:
+                        c2t = (79,90,255)
+                        c2b = (63,72,204)
+                    r2 = rin[1].getCost()
+                    pg.draw.rect(screen, c2t, Rect(750, 1185, 150, 50))
+                    pg.draw.rect(screen, c2b, Rect(750, 1235, 150, 160))
+                    font.render_to(screen, (760, 1195), str(rin[1].getPoints()), (0,0,0), None, size=45)
+                    drawCardType(screen, font,(820, 1200), rin[1])
+                    font.render_to(screen, (760, 1245), "Wh: " + str(r2[0]), (0,0,0), None, size=25)
+                    font.render_to(screen, (760, 1275), "Bl: " + str(r2[1]), (0,0,0), None, size=25)
+                    font.render_to(screen, (760, 1305), "Gr: " + str(r2[2]), (0,0,0), None, size=25)
+                    font.render_to(screen, (760, 1335), "Rd: " + str(r2[3]), (0,0,0), None, size=25)
+                    font.render_to(screen, (760, 1365), "Br: " + str(r2[4]), (0,0,0), None, size=25)
 
             #UE(USER ERROR) HAPPENED
             if invalid:
