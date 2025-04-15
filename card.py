@@ -91,3 +91,6 @@ class Card(pg.sprite.Sprite):
     
     def getCords(self):
         return [self.rect.x,self.rect.y]
+
+    def getLvl(self):
+        return self.level
