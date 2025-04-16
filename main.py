@@ -404,7 +404,9 @@ class Main():
                     #Select Reserve
                     if 750 <= x <= 900 and 970 <= y <= 1180 and player.reservelen() > 0:
                         reserve1 = True
+                        reserve2 = False
                     if 750 <= x <= 900 and 1185 <= y <= 1395 and player.reservelen() > 1:
+                        reserve1 = False
                         reserve2 = True
                     #BUY RESERVE
                     #R1
@@ -1037,6 +1039,10 @@ class Main():
                 font.render_to(screen, (700, 1210), "R", (255,255,255), None, size=50)
                 font.render_to(screen, (700, 1270), "V", (255,255,255), None, size=50)
                 font.render_to(screen, (700, 1330), "E", (255,255,255), None, size=50)
+                if reserve1:
+                    pg.draw.rect(screen, (255,255,255), Rect(745, 965, 160, 220))
+                if reserve2:
+                    pg.draw.rect(screen, (255,255,255), Rect(745, 1180, 160, 220))
                 if rin[0].getLvl() == 1:
                     c1t = (49,255,109)
                     c1b = (34,177,76)
