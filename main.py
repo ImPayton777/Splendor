@@ -282,6 +282,8 @@ class Main():
         endTurn = False
         invalid = False
         help = False
+        reserve1 = False
+        reserve2 = False
 
         # Startup the main game loop
         running = True
@@ -301,7 +303,7 @@ class Main():
                     x,y = pos
                     if len(cs) > 0 and not invalid:
                         # handles getting/returning tokens
-                        if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying:
+                        if isinstance(cs[0], Tokens) and not (x < 940 and y > 960) and not buying and not (reserve1 or reserve2):
                             grabin = True
                             name = "Get tokens:"
                             tp = cs[0].getType()
@@ -395,13 +397,18 @@ class Main():
                                         shop.append(tT)
 
                         #BUYING
-                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin:
+                        if isinstance(cs[0], Card) and len(cs) == 1 and not grabin and not (reserve1 or reserve2):
                             buying = True
                             selectedCard = cs[0]
 
+                    #Select Reserve
+                    if 750 <= x <= 900 and 970 <= y <= 1180 and player.reservelen() > 0:
+                        reserve1 = True
+                    if 750 <= x <= 900 and 1185 <= y <= 1395 and player.reservelen() > 1:
+                        reserve2 = True
                     #BUY RESERVE
                     #R1
-                    if 750 <= x <= 900 and 970 <= y <= 1180 and player.reservelen() > 0:
+                    if 950 <= x <= 1230 and 970 <= y <= 1070 and player.reservelen() > 0 and reserve1:
                         selectedCard = player.getreserve()[0]
                         canUse = player.getCurrency()
                         cost = selectedCard.getCost()
@@ -410,7 +417,7 @@ class Main():
                             player.RR(selectedCard)
                             selectedCard = None
                             turn = (turn+1)%2
-                            buying = False
+                            reserve1 = False
                             while len(returns) != 0:
                                 tp = returns[0].getType()
                                 if tp == 0:
@@ -430,9 +437,9 @@ class Main():
                                     brT.append(returns.pop(0))
                         else:
                             invalid = True
-                            buying = False
+                            reserve2 = False
                     #R2
-                    if 750 <= x <= 900 and 1185 <= y <= 1395 and player.reservelen() > 1:
+                    if 950 <= x <= 1230 and 970 <= y <= 1070 and player.reservelen() > 1 and reserve2:
                         selectedCard = player.getreserve()[1]
                         canUse = player.getCurrency()
                         cost = selectedCard.getCost()
@@ -441,7 +448,7 @@ class Main():
                             player.RR(selectedCard)
                             selectedCard = None
                             turn = (turn+1)%2
-                            buying = False
+                            reserve2 = False
                             while len(returns) != 0:
                                 tp = returns[0].getType()
                                 if tp == 0:
@@ -461,7 +468,12 @@ class Main():
                                     brT.append(returns.pop(0))
                         else:
                             invalid = True
-                            buying = False
+                            reserve2 = False
+
+                    #NO Reserve
+                    if 950 <= x <= 1230 and 1100 <= y <= 1200 and (reserve1 or reserve2):
+                        reserve1 = False
+                        reserve2 = False
 
                     #YES CARD
                     if 950 <= x <= 1230 and 970 <= y <= 1070 and buying and not invalid:
@@ -594,7 +606,7 @@ class Main():
                         selectedCard = None
                         buying = False
 
-                    #YES RESERVE TODO
+                    #YES RESERVE
                     if 950 <= x <= 1230 and 1230 <= y <= 1330 and buying and not invalid:
                         if len(gldT) > 0:
                             gldT[0].update(1400)
@@ -859,6 +871,12 @@ class Main():
                 pg.draw.rect(screen, (255,0,0), Rect(1095, 1260, 130, 70))
                 font.render_to(screen, (965, 1270), "YES", (0,0,0), None, size=50)
                 font.render_to(screen, (1115, 1270), "NO", (0,0,0), None, size=50)
+            if reserve1 or reserve2:
+                font.render_to(screen, (950, 855), "Buy Card?", (255,0,0), None, size=50)
+                pg.draw.rect(screen, (0,255,0), Rect(950, 970, 280, 100))
+                pg.draw.rect(screen, (255,0,0), Rect(950, 1100, 280, 100))
+                font.render_to(screen, (1025, 995), "YES", (0,0,0), None, size=60)
+                font.render_to(screen, (1045, 1125), "NO", (0,0,0), None, size=60)
 
             #Inventory Draw
             pg.draw.rect(screen, (100,100,100), Rect(5, 965, 925, 430))
