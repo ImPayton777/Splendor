@@ -190,7 +190,7 @@ class Player():
 
     #returns currency in a list [white, blue, green, red, brown]
     def getCurrency(self):
-        return [self.whiteCards+self.whiteTokens, self.blueCards+self.blueTokens, self.greenCards+self.greenTokens, self.redCards+self.redTokens, self.brownCards+self.brownTokens]
+        return [self.whiteCards+self.whiteTokens, self.blueCards+self.blueTokens, self.greenCards+self.greenTokens, self.redCards+self.redTokens, self.brownCards+self.brownTokens, self.goldTokens]
 
     def getTotalPoints(self):
         return self.totalPoints
