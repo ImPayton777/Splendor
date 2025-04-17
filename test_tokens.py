@@ -51,5 +51,11 @@ class testTokens(unittest.TestCase):
         self.assertEqual(k.rect.x,5)
         self.assertEqual(k.rect.y,7)
 
+    def test_move(self):
+        k = Tokens((122,412),0)
+        k.move(0,0)
+        self.assertEqual(k.rect.x,0)
+        self.assertEqual(k.rect.y,0)
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
