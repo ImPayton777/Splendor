@@ -9,6 +9,30 @@ class testPlayer(unittest.TestCase):
     pg.init()
     screen = pg.display.set_mode([1300, 1400])
 
+    #Tests to see if reserveCard will return -1 if reserve is full.
+    def test_reserveCard1(self):
+        p = Player()
+        p.reserve.append(Card((0,0),1,2,1,1,0,0,4,1))
+        p.reserve.append(Card((0,0),2,2,0,1,0,0,4,1))
+        self.assertEqual(p.reserveCard(Card((0,0),0,0,1,3,1,0,4,1)),-1)
+    
+    #Tests to see if reserveCard properly adds card to reserve and adds gold token to inventory.
+    def test_reserveCard2(self):
+        p = Player()
+        g = Tokens((0,0),5)
+        r = p.reserveCard(Card((0,0),1,2,1,1,0,0,4,1),g)
+        self.assertEqual(len(p.reserve),1)
+        self.assertEqual(p.goldtokens[0],g)
+        self.assertEqual(p.goldTokens,1)
+        self.assertEqual(r,1)
+
+    #Tests to see if reserveCard properly adds card to reserve if no gold token is given.
+    def test_reserveCard3(self):
+        p = Player()
+        r = p.reserveCard(Card((0,0),1,2,1,1,0,0,4,1))
+        self.assertEqual(len(p.reserve),1)
+        self.assertEqual(r,1)
+
     #Tests to see if getTotalPoints properly returns the amount of points a player has.
     def test_getTotalPoints(self):
         p = Player()
@@ -117,6 +141,7 @@ class testPlayer(unittest.TestCase):
         self.assertEqual(p.redtokens,[])
         self.assertEqual(p.browntokens,[])
 
+    #Tests to see if checkNoble properly gives the player only 1 noble if they can afford more than 1.
     def test_checkNoble1(self):
         p = Player()
         #0 = white   1 = blue   2 = green   3 - red   4 - brown
@@ -126,10 +151,11 @@ class testPlayer(unittest.TestCase):
         p.redCards = 3
         p.brownCards = 3
         nobles = [Noble((0,0),0,0,4,4,0,3),Noble((0,0),3,0,0,3,3,3),Noble((0,0),4,4,0,0,0,3)]
-        self.assertEqual(p.checkNoble(nobles),[nobles[1],nobles[2]])
-        self.assertEqual(len(p.nobles),2)
-        self.assertEqual(p.getTotalPoints(),6)
+        self.assertEqual(p.checkNoble(nobles),[nobles[1]])
+        self.assertEqual(len(p.nobles),1)
+        self.assertEqual(p.getTotalPoints(),3)
 
+    #Checks and see if checkNoble gives the player nothing if they can't afford any noble.
     def test_checkNoble2(self):
         p = Player()
         p.whiteCards = 0
@@ -142,6 +168,32 @@ class testPlayer(unittest.TestCase):
         self.assertEqual(len(p.nobles),0)
         self.assertEqual(p.getTotalPoints(),0)
         
+    #Tests to see if reservelen properly returns the length of the reserve list.
+    def test_reservelen(self):
+        p = Player()
+        p.reserve.append(Card((0,0),1,2,1,1,0,0,4,1))
+        p.reserve.append(Card((0,0),2,2,0,1,0,0,4,1))
+        self.assertEqual(p.reservelen(),2)
+
+    #Tests to see if getreserve properly gives the list of the reserve.
+    def test_getreserve(self):
+        p = Player()
+        c1 = Card((0,0),1,2,1,1,0,0,4,1)
+        c2 = Card((0,0),2,2,0,1,0,0,4,1)
+        p.reserve.append(c1)
+        p.reserve.append(c2)
+        self.assertEqual(p.getreserve(),[c1,c2])
+
+    #Tests to see if RR properly removes a card from the reserve list.
+    def test_RR(self):
+        p = Player()
+        c1 = Card((0,0),1,2,1,1,0,0,4,1)
+        c2 = Card((0,0),2,2,0,1,0,0,4,1)
+        p.reserve.append(c1)
+        p.reserve.append(c2)
+        p.RR(c1)
+        self.assertEqual(p.reservelen(),1)
+        self.assertEqual(p.getreserve()[0],c2)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
