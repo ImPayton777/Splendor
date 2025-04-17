@@ -31,6 +31,16 @@ class testTokens(unittest.TestCase):
         x = Tokens((0,0),4)
         self.assertEqual(x.tokenType,4)
 
+    #Tests to see if the initial gem type is the one inputted (4).
+    def test_gem6(self):
+        x = Tokens((0,0),5)
+        self.assertEqual(x.tokenType,5)
+
+    #Tests to see if getType() properly returns the gem type.
+    def test_getType(self):
+        x = Tokens((0,0),3)
+        self.assertEqual(x.getType(),3)
+
     #Tests if setType sets the gem type correctly.
     def test_setType(self):
         x = Tokens((0,0),0)
