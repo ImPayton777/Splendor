@@ -63,7 +63,7 @@ class testPlayer(unittest.TestCase):
         p.greenTokens = 1
         p.redTokens = 1
         p.brownTokens = 4
-        self.assertEqual(p.getCurrency(),[5,1,3,5,5])
+        self.assertEqual(p.getCurrency(),[5,1,3,5,5,0])
 
     #Test if takeTokens properly gives the player tokens. Tests if the token values goes up and appends a token to the tokens list.
     #0 = white   1 = blue   2 = green   3 - red   4 - brown
@@ -91,10 +91,10 @@ class testPlayer(unittest.TestCase):
         card = Card((0,0), 1,2,1,1,0, 0,4,1)
         buy = p.buyCard(card)
         self.assertEqual(len(buy),5)
-        self.assertEqual(p.getCurrency(),[0,0,0,0,1])
+        self.assertEqual(p.getCurrency(),[0,0,0,0,1,0])
         self.assertEqual(p.cards,[card])
         self.assertEqual(p.getCards(),[0,0,0,0,1])
-        self.assertEqual(p.getTokens(),[0,0,0,0,0])
+        self.assertEqual(p.getTokens(),[0,0,0,0,0,0])
 
     #Tests to see if player buys cards with cards already bought and some tokens.
     def test_buyCard2(self):
@@ -116,17 +116,32 @@ class testPlayer(unittest.TestCase):
         p.brownCards += 2
         buy = p.buyCard(card)
         self.assertEqual(len(buy),8)
-        self.assertEqual(p.getCurrency(),[0,3,1,2,2])
+        self.assertEqual(p.getCurrency(),[0,3,1,2,2,0])
         self.assertEqual(p.cards[-1],card)
         self.assertEqual(p.getCards(),[0,3,1,1,2])
-        self.assertEqual(p.getTokens(),[0,0,0,1,0])
+        self.assertEqual(p.getTokens(),[0,0,0,1,0,0])
+    
+    #Tests if player can buy a card when they don't have enough regular tokens but enough gold to fill the remainder 
+    def test_buyCard3(self):
+        p = Player()
+        t = [Tokens((0,0),1),Tokens((0,0),1),Tokens((0,0),2),Tokens((0,0),3)]
+        p.goldtokens.append(Tokens((0,0),5))
+        p.goldTokens += 1
+        p.takeToken(t)
+        card = Card((0,0), 1,2,1,1,0, 0,4,1)
+        buy = p.buyCard(card)
+        self.assertEqual(len(buy),5)
+        self.assertEqual(p.getCurrency(),[0,0,0,0,1,0])
+        self.assertEqual(p.cards,[card])
+        self.assertEqual(p.getCards(),[0,0,0,0,1])
+        self.assertEqual(p.getTokens(),[0,0,0,0,0,0])
 
     #Tests to see if getTokens properly returns a list of player tokens.
     def test_getTokens(self):
         p = Player()
         t = [Tokens((0,0),0),Tokens((0,0),1),Tokens((0,0),1),Tokens((0,0),2),Tokens((0,0),4)]
         p.takeToken(t)
-        self.assertEqual(p.getTokens(),[1,2,1,0,1])
+        self.assertEqual(p.getTokens(),[1,2,1,0,1,0])
 
     #Tests to see if returnTokens properly removes tokens from the player's inventory.
     def test_returnTokens(self):
@@ -134,7 +149,7 @@ class testPlayer(unittest.TestCase):
         t = [Tokens((0,0),0),Tokens((0,0),1),Tokens((0,0),1),Tokens((0,0),2),Tokens((0,0),3)]
         p.takeToken(t)
         p.returnTokens(t)
-        self.assertEqual(p.getTokens(),[0,0,0,0,0])
+        self.assertEqual(p.getTokens(),[0,0,0,0,0,0])
         self.assertEqual(p.whitetokens,[])
         self.assertEqual(p.bluetokens,[])
         self.assertEqual(p.greentokens,[])
