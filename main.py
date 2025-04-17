@@ -414,6 +414,17 @@ class Main():
                         selectedCard = player.getreserve()[0]
                         canUse = player.getCurrency()
                         cost = selectedCard.getCost()
+                        leftover = 0
+                        if canUse[0] < cost[0]:
+                            leftover += (canUse[0]-cost[0])
+                        if canUse[1] < cost[1]:
+                            leftover += (canUse[1]-cost[1])
+                        if canUse[2] < cost[2]:
+                            leftover += (canUse[2]-cost[2])
+                        if canUse[3] < cost[3]:
+                            leftover += (canUse[3]-cost[3])
+                        if canUse[4] < cost[4]:
+                            leftover += (canUse[4]-cost[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                             returns = player.buyCard(selectedCard)
                             player.RR(selectedCard)
@@ -437,6 +448,32 @@ class Main():
                                 if tp == 4:
                                     returns[0].move(620,850)
                                     brT.append(returns.pop(0))
+                        if leftover <= canUse[5]:
+                            returns = player.buyCard(selectedCard)
+                            player.RR(selectedCard)
+                            selectedCard = None
+                            turn = (turn+1)%2
+                            reserve1 = False
+                            while len(returns) != 0:
+                                tp = returns[0].getType()
+                                if tp == 0:
+                                    returns[0].move(20,850)
+                                    wT.append(returns.pop(0))
+                                if tp == 1:
+                                    returns[0].move(170,850)
+                                    blT.append(returns.pop(0))
+                                if tp == 2:
+                                    returns[0].move(320,850)
+                                    gT.append(returns.pop(0))
+                                if tp == 3:
+                                    returns[0].move(470,850)
+                                    rT.append(returns.pop(0))
+                                if tp == 4:
+                                    returns[0].move(620,850)
+                                    brT.append(returns.pop(0))
+                                if tp == 5:
+                                    returns[0].move(770,850)
+                                    gldT.append(returns.pop(0))
                         else:
                             invalid = True
                             reserve2 = False
@@ -888,7 +925,7 @@ class Main():
             font.render_to(screen, (5, 1175), " Points: " + str(player.getTotalPoints()), (255,69,0), None, size=50)
             font.render_to(screen, (5, 1225), "Tokens:", (255,69,0), None, size=50)
             font.render_to(screen, (5, 1270), " White: " + str(tokenns[0]) + " Blue: " + str(tokenns[1]) +" Green: " + str(tokenns[2]), (255,69,0), None, size=50)
-            font.render_to(screen, (5, 1325), " Red: " + str(tokenns[3]) + " Brown: " + str(tokenns[4]), (255,69,0), None, size=50)
+            font.render_to(screen, (5, 1325), " Red: " + str(tokenns[3]) + " Brown: " + str(tokenns[4]) + " Gold: " + str(tokenns[5]), (255,69,0), None, size=50)
             #Sprite drawing
             lvl1.draw(screen)
             lvl2.draw(screen)

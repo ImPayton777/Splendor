@@ -77,6 +77,9 @@ class Player():
             i = cost[0] - self.whiteCards
             self.whiteTokens -= i
             while i > 0:
+                if len(self.whitetokens) == 0:
+                    self.whiteTokens = 0
+                    break
                 returns.append(self.whitetokens.pop())
                 i -= 1
             needGold += i
@@ -84,6 +87,9 @@ class Player():
             i = cost[1] - self.blueCards
             self.blueTokens -= i
             while i > 0:
+                if len(self.bluetokens) == 0:
+                    self.blueTokens = 0
+                    break
                 returns.append(self.bluetokens.pop())
                 i -= 1
             needGold += i
@@ -91,6 +97,9 @@ class Player():
             i = cost[2] - self.greenCards
             self.greenTokens -= i
             while i > 0:
+                if len(self.greentokens) == 0:
+                    self.greenTokens = 0
+                    break
                 returns.append(self.greentokens.pop())
                 i -= 1
             needGold += i
@@ -98,6 +107,9 @@ class Player():
             i = cost[3] - self.redCards
             self.redTokens -= i
             while i > 0:
+                if len(self.redtokens) == 0:
+                    self.redTokens = 0
+                    break
                 returns.append(self.redtokens.pop())
                 i -= 1
             needGold += i
@@ -105,6 +117,9 @@ class Player():
             i = cost[4] - self.brownCards
             self.brownTokens -= i
             while i > 0:
+                if len(self.browntokens) == 0:
+                    self.brownTokens = 0
+                    break
                 returns.append(self.browntokens.pop())
                 i -= 1
             needGold += i
