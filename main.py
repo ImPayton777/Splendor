@@ -448,7 +448,7 @@ class Main():
                                 if tp == 4:
                                     returns[0].move(620,850)
                                     brT.append(returns.pop(0))
-                        if leftover <= canUse[5]:
+                        elif leftover <= canUse[5]:
                             returns = player.buyCard(selectedCard)
                             player.RR(selectedCard)
                             selectedCard = None
@@ -482,6 +482,17 @@ class Main():
                         selectedCard = player.getreserve()[1]
                         canUse = player.getCurrency()
                         cost = selectedCard.getCost()
+                        leftover = 0
+                        if canUse[0] < cost[0]:
+                            leftover += (canUse[0]-cost[0])
+                        if canUse[1] < cost[1]:
+                            leftover += (canUse[1]-cost[1])
+                        if canUse[2] < cost[2]:
+                            leftover += (canUse[2]-cost[2])
+                        if canUse[3] < cost[3]:
+                            leftover += (canUse[3]-cost[3])
+                        if canUse[4] < cost[4]:
+                            leftover += (canUse[4]-cost[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                             returns = player.buyCard(selectedCard)
                             player.RR(selectedCard)
@@ -505,6 +516,32 @@ class Main():
                                 if tp == 4:
                                     returns[0].move(620,850)
                                     brT.append(returns.pop(0))
+                        elif leftover <= canUse[5]:
+                            returns = player.buyCard(selectedCard)
+                            player.RR(selectedCard)
+                            selectedCard = None
+                            turn = (turn+1)%2
+                            reserve1 = False
+                            while len(returns) != 0:
+                                tp = returns[0].getType()
+                                if tp == 0:
+                                    returns[0].move(20,850)
+                                    wT.append(returns.pop(0))
+                                if tp == 1:
+                                    returns[0].move(170,850)
+                                    blT.append(returns.pop(0))
+                                if tp == 2:
+                                    returns[0].move(320,850)
+                                    gT.append(returns.pop(0))
+                                if tp == 3:
+                                    returns[0].move(470,850)
+                                    rT.append(returns.pop(0))
+                                if tp == 4:
+                                    returns[0].move(620,850)
+                                    brT.append(returns.pop(0))
+                                if tp == 5:
+                                    returns[0].move(770,850)
+                                    gldT.append(returns.pop(0))
                         else:
                             invalid = True
                             reserve2 = False
@@ -518,6 +555,17 @@ class Main():
                     if 950 <= x <= 1230 and 970 <= y <= 1070 and buying and not invalid:
                         canUse = player.getCurrency()
                         cost = selectedCard.getCost()
+                        leftover = 0
+                        if canUse[0] < cost[0]:
+                            leftover += (canUse[0]-cost[0])
+                        if canUse[1] < cost[1]:
+                            leftover += (canUse[1]-cost[1])
+                        if canUse[2] < cost[2]:
+                            leftover += (canUse[2]-cost[2])
+                        if canUse[3] < cost[3]:
+                            leftover += (canUse[3]-cost[3])
+                        if canUse[4] < cost[4]:
+                            leftover += (canUse[4]-cost[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                             returns = player.buyCard(selectedCard)
                             if selectedCard == l1c1:
@@ -636,6 +684,127 @@ class Main():
                                 if tp == 4:
                                     returns[0].move(620,850)
                                     brT.append(returns.pop(0))
+                        elif leftover <= canUse[5]:
+                            returns = player.buyCard(selectedCard)
+                            if selectedCard == l1c1:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c1 = choice(l1)
+                                    l1.remove(l1c1)
+                                    l1c1.flip(200)
+                                else:
+                                    l1c1 = None
+                            if selectedCard == l1c2:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c2 = choice(l1)
+                                    l1.remove(l1c2)
+                                    l1c2.flip(370)
+                                else:
+                                    l1c2 = None
+                            if selectedCard == l1c3:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c3 = choice(l1)
+                                    l1.remove(l1c3)
+                                    l1c3.flip(540)
+                                else:
+                                    l1c3 = None
+                            if selectedCard == l1c4:
+                                selectedCard.update(1400)
+                                if len(l1) > 0:
+                                    l1c4 = choice(l1)
+                                    l1.remove(l1c4)
+                                    l1c4.flip(710)
+                                else:
+                                    l1c4 = None
+                            if selectedCard == l2c1:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c1 = choice(l2)
+                                    l2.remove(l2c1)
+                                    l2c1.flip(200)
+                                else:
+                                    l2c1 = None
+                            if selectedCard == l2c2:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c2 = choice(l2)
+                                    l2.remove(l2c2)
+                                    l2c2.flip(370)
+                                else:
+                                    l2c2 = None
+                            if selectedCard == l2c3:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c3 = choice(l2)
+                                    l2.remove(l2c3)
+                                    l2c3.flip(540)
+                                else:
+                                    l2c3 = None
+                            if selectedCard == l2c4:
+                                selectedCard.update(1400)
+                                if len(l2) > 0:
+                                    l2c4 = choice(l2)
+                                    l2.remove(l2c4)
+                                    l2c4.flip(710)
+                                else:
+                                    l2c4 = None
+                            if selectedCard == l3c1:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c1 = choice(l3)
+                                    l3.remove(l3c1)
+                                    l3c1.flip(200)
+                                else:
+                                    l3c1 = None
+                            if selectedCard == l3c2:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c2 = choice(l3)
+                                    l3.remove(l3c2)
+                                    l3c2.flip(370)
+                                else:
+                                    l3c2 = None
+                            if selectedCard == l3c3:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c3 = choice(l3)
+                                    l3.remove(l3c3)
+                                    l3c3.flip(540)
+                                else:
+                                    l3c3 = None
+                            if selectedCard == l3c4:
+                                selectedCard.update(1400)
+                                if len(l3) > 0:
+                                    l3c4 = choice(l3)
+                                    l3.remove(l3c4)
+                                    l3c4.flip(710)
+                                else:
+                                    l3c4 = None
+                            selectedCard = None
+                            turn = (turn+1)%2
+                            buying = False
+                            while len(returns) != 0:
+                                tp = returns[0].getType()
+                                if tp == 0:
+                                    returns[0].move(20,850)
+                                    wT.append(returns.pop(0))
+                                if tp == 1:
+                                    returns[0].move(170,850)
+                                    blT.append(returns.pop(0))
+                                if tp == 2:
+                                    returns[0].move(320,850)
+                                    gT.append(returns.pop(0))
+                                if tp == 3:
+                                    returns[0].move(470,850)
+                                    rT.append(returns.pop(0))
+                                if tp == 4:
+                                    returns[0].move(620,850)
+                                    brT.append(returns.pop(0))
+                                if tp == 5:
+                                    returns[0].move(770,850)
+                                    gldT.append(returns.pop(0))
                         else:
                             invalid = True
                             buying = False
