@@ -27,6 +27,7 @@ class testCards(unittest.TestCase):
         self.assertEqual(k.rect.x,5)
         self.assertEqual(k.rect.y,7)
 
+    #Tests to see if move properly moves a card to a specific coordinate.
     def test_move(self):
         k = Card((122,456),0,1,1,1,1,0,0,1)
         k.move(0,0)
@@ -59,18 +60,20 @@ class testCards(unittest.TestCase):
         cost = k.getCost()
         self.assertEqual(cost,[0,1,1,1,1])
 
-    #Tests tp see of setCost properly sets the cost of each type.
+    #Tests to see of setCost properly sets the cost of each type.
     def test_setCost(self):
         k = Card((0,0),0,1,1,1,1,0,0,1)
         k.setCost(1,2,3,4,5)
         self.assertEqual(k.getCost(),[1,2,3,4,5])
 
+    #Tests to see if flip properly moves the card.
     def test_flip(self):
         k = Card((0,0),0,1,1,1,1,0,0,1)
         k.flip(100,100)
         self.assertEqual(k.rect.x,100)
         self.assertEqual(k.rect.y,100)
 
+    #Tests to see if getLvl properly returns the level of the card.
     def test_getLvl(self):
         k = Card((0,0),0,1,1,1,1,0,0,1)
         self.assertEqual(k.getLvl(),1)
