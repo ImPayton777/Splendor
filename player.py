@@ -72,36 +72,47 @@ class Player():
     def buyCard(self, card):
         cost = card.getCost()
         returns = []
+        needGold = 0
         if(cost[0] - self.whiteCards > 0):
             i = cost[0] - self.whiteCards
             self.whiteTokens -= i
             while i > 0:
                 returns.append(self.whitetokens.pop())
                 i -= 1
+            needGold += i
         if(cost[1] - self.blueCards > 0):
             i = cost[1] - self.blueCards
             self.blueTokens -= i
             while i > 0:
                 returns.append(self.bluetokens.pop())
                 i -= 1
+            needGold += i
         if(cost[2] - self.greenCards > 0):
             i = cost[2] - self.greenCards
             self.greenTokens -= i
             while i > 0:
                 returns.append(self.greentokens.pop())
                 i -= 1
+            needGold += i
         if(cost[3] - self.redCards > 0):
             i = cost[3] - self.redCards
             self.redTokens -= i
             while i > 0:
                 returns.append(self.redtokens.pop())
                 i -= 1
+            needGold += i
         if(cost[4] - self.brownCards > 0):
             i = cost[4] - self.brownCards
             self.brownTokens -= i
             while i > 0:
                 returns.append(self.browntokens.pop())
                 i -= 1
+            needGold += i
+        if(needGold > 0):
+            self.goldTokens -= needGold
+            while needGold > 0:
+                returns.append(self.goldtokens.pop())
+                needGold -= 1
         self.totalPoints += card.getPoints()
         i = card.getCardType()
         if i == 0:
@@ -190,7 +201,7 @@ class Player():
 
     #returns token counts of player
     def getTokens(self):
-        return [self.whiteTokens, self.blueTokens, self.greenTokens, self.redTokens, self.brownTokens]
+        return [self.whiteTokens, self.blueTokens, self.greenTokens, self.redTokens, self.brownTokens, self.goldTokens]
 
     #returns reserve length
     def reservelen(self):
