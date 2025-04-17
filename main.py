@@ -416,15 +416,15 @@ class Main():
                         cost = selectedCard.getCost()
                         leftover = 0
                         if canUse[0] < cost[0]:
-                            leftover += (canUse[0]-cost[0])
+                            leftover += (cost[0]-canUse[0])
                         if canUse[1] < cost[1]:
-                            leftover += (canUse[1]-cost[1])
+                            leftover += (cost[1]-canUse[1])
                         if canUse[2] < cost[2]:
-                            leftover += (canUse[2]-cost[2])
+                            leftover += (cost[2]-canUse[2])
                         if canUse[3] < cost[3]:
-                            leftover += (canUse[3]-cost[3])
+                            leftover += (cost[3]-canUse[3])
                         if canUse[4] < cost[4]:
-                            leftover += (canUse[4]-cost[4])
+                            leftover += (cost[4]-canUse[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                             returns = player.buyCard(selectedCard)
                             player.RR(selectedCard)
@@ -484,16 +484,17 @@ class Main():
                         cost = selectedCard.getCost()
                         leftover = 0
                         if canUse[0] < cost[0]:
-                            leftover += (canUse[0]-cost[0])
+                            leftover += (cost[0]-canUse[0])
                         if canUse[1] < cost[1]:
-                            leftover += (canUse[1]-cost[1])
+                            leftover += (cost[1]-canUse[1])
                         if canUse[2] < cost[2]:
-                            leftover += (canUse[2]-cost[2])
+                            leftover += (cost[2]-canUse[2])
                         if canUse[3] < cost[3]:
-                            leftover += (canUse[3]-cost[3])
+                            leftover += (cost[3]-canUse[3])
                         if canUse[4] < cost[4]:
-                            leftover += (canUse[4]-cost[4])
+                            leftover += (cost[4]-canUse[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
+                            print("route1")
                             returns = player.buyCard(selectedCard)
                             player.RR(selectedCard)
                             selectedCard = None
@@ -557,15 +558,15 @@ class Main():
                         cost = selectedCard.getCost()
                         leftover = 0
                         if canUse[0] < cost[0]:
-                            leftover += (canUse[0]-cost[0])
+                            leftover += (cost[0]-canUse[0])
                         if canUse[1] < cost[1]:
-                            leftover += (canUse[1]-cost[1])
+                            leftover += (cost[1]-canUse[1])
                         if canUse[2] < cost[2]:
-                            leftover += (canUse[2]-cost[2])
+                            leftover += (cost[2]-canUse[2])
                         if canUse[3] < cost[3]:
-                            leftover += (canUse[3]-cost[3])
+                            leftover += (cost[3]-canUse[3])
                         if canUse[4] < cost[4]:
-                            leftover += (canUse[4]-cost[4])
+                            leftover += (cost[4]-canUse[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
                             returns = player.buyCard(selectedCard)
                             if selectedCard == l1c1:
