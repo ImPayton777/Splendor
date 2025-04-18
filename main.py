@@ -494,7 +494,6 @@ class Main():
                         if canUse[4] < cost[4]:
                             leftover += (cost[4]-canUse[4])
                         if canUse[0] >= cost[0] and canUse[1] >= cost[1] and canUse[2] >= cost[2] and canUse[3] >= cost[3] and canUse[4] >= cost[4]:
-                            print("route1")
                             returns = player.buyCard(selectedCard)
                             player.RR(selectedCard)
                             selectedCard = None
@@ -522,7 +521,7 @@ class Main():
                             player.RR(selectedCard)
                             selectedCard = None
                             turn = (turn+1)%2
-                            reserve1 = False
+                            reserve2 = False
                             while len(returns) != 0:
                                 tp = returns[0].getType()
                                 if tp == 0:
