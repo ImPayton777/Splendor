@@ -357,22 +357,6 @@ class Main():
                                 if len(shop) == 2 and tp == 4:
                                     if shop[0].getType() == 4 or shop[1].getType() == 4:
                                         invalid = True
-                                #Grab 3 of same type
-                                if len(shop) == 2 and tp == 0 and len(wT) < 3:
-                                    if shop[0].getType() == 0 or shop[1].getType() == 0:
-                                        invalid = True
-                                if len(shop) == 2 and tp == 1 and len(blT) < 3:
-                                    if shop[0].getType() == 1 or shop[1].getType() == 1:
-                                        invalid = True
-                                if len(shop) == 2 and tp == 2 and len(gT) < 3:
-                                    if shop[0].getType() == 2 or shop[1].getType() == 2:
-                                        invalid = True
-                                if len(shop) == 2 and tp == 3 and len(rT) < 3:
-                                    if shop[0].getType() == 3 or shop[1].getType() == 3:
-                                        invalid = True
-                                if len(shop) == 2 and tp == 4 and len(brT) < 3:
-                                    if shop[0].getType() == 4 or shop[1].getType() == 4:
-                                        invalid = True
                                 #IF valid grab
                                 if not invalid:
                                     if tp == 0:
@@ -1336,6 +1320,8 @@ def drawCardType(screen,font,coords,card):
             font.render_to(screen, coords, "Red", (255,0,0), None, size=25)
         elif card.getCardType() == 4:
             font.render_to(screen, coords, "Brown", (92,64,51), None, size=25)
+        else:
+            pass
 # Startup the main method to get things going.
 if __name__ == "__main__":
     game = Main()
